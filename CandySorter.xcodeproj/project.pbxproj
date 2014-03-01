@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
+		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
+		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
+		CFBE287718C2AB3900DDB182 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBE287518C2AB3900DDB182 /* InfoPlist.strings */; };
+		CFBE287918C2AB3900DDB182 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE287818C2AB3900DDB182 /* main.m */; };
+		CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE287C18C2AB3900DDB182 /* AppDelegate.m */; };
+		CFBE288018C2AB3900DDB182 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBE287E18C2AB3900DDB182 /* Main.storyboard */; };
+		CFBE288318C2AB3900DDB182 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE288218C2AB3900DDB182 /* ViewController.m */; };
+		CFBE288518C2AB3900DDB182 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBE288418C2AB3900DDB182 /* Images.xcassets */; };
+		CFBE288C18C2AB3900DDB182 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE288B18C2AB3900DDB182 /* XCTest.framework */; };
+		CFBE288D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
+		CFBE288E18C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
+		CFBE289618C2AB3900DDB182 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBE289418C2AB3900DDB182 /* InfoPlist.strings */; };
+		CFBE289818C2AB3900DDB182 /* CandySorterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE289718C2AB3900DDB182 /* CandySorterTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFBE288F18C2AB3900DDB182 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFBE286118C2AB3900DDB182 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFBE286818C2AB3900DDB182;
+			remoteInfo = CandySorter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CFBE287018C2AB3900DDB182 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CFBE287418C2AB3900DDB182 /* CandySorter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CandySorter-Info.plist"; sourceTree = "<group>"; };
+		CFBE287618C2AB3900DDB182 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFBE287818C2AB3900DDB182 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFBE287A18C2AB3900DDB182 /* CandySorter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CandySorter-Prefix.pch"; sourceTree = "<group>"; };
+		CFBE287B18C2AB3900DDB182 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFBE287C18C2AB3900DDB182 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFBE287F18C2AB3900DDB182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFBE288118C2AB3900DDB182 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CFBE288218C2AB3900DDB182 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CFBE288418C2AB3900DDB182 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CFBE288A18C2AB3900DDB182 /* CandySorterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CandySorterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBE288B18C2AB3900DDB182 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CFBE289318C2AB3900DDB182 /* CandySorterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CandySorterTests-Info.plist"; sourceTree = "<group>"; };
+		CFBE289518C2AB3900DDB182 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFBE289718C2AB3900DDB182 /* CandySorterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandySorterTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFBE286618C2AB3900DDB182 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */,
+				CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */,
+				CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFBE288718C2AB3900DDB182 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE288C18C2AB3900DDB182 /* XCTest.framework in Frameworks */,
+				CFBE288E18C2AB3900DDB182 /* UIKit.framework in Frameworks */,
+				CFBE288D18C2AB3900DDB182 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFBE286018C2AB3900DDB182 = {
+			isa = PBXGroup;
+			children = (
+				CFBE287218C2AB3900DDB182 /* CandySorter */,
+				CFBE289118C2AB3900DDB182 /* CandySorterTests */,
+				CFBE286B18C2AB3900DDB182 /* Frameworks */,
+				CFBE286A18C2AB3900DDB182 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFBE286A18C2AB3900DDB182 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE286918C2AB3900DDB182 /* CandySorter.app */,
+				CFBE288A18C2AB3900DDB182 /* CandySorterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFBE286B18C2AB3900DDB182 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE286C18C2AB3900DDB182 /* Foundation.framework */,
+				CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */,
+				CFBE287018C2AB3900DDB182 /* UIKit.framework */,
+				CFBE288B18C2AB3900DDB182 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFBE287218C2AB3900DDB182 /* CandySorter */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE287B18C2AB3900DDB182 /* AppDelegate.h */,
+				CFBE287C18C2AB3900DDB182 /* AppDelegate.m */,
+				CFBE287E18C2AB3900DDB182 /* Main.storyboard */,
+				CFBE288118C2AB3900DDB182 /* ViewController.h */,
+				CFBE288218C2AB3900DDB182 /* ViewController.m */,
+				CFBE288418C2AB3900DDB182 /* Images.xcassets */,
+				CFBE287318C2AB3900DDB182 /* Supporting Files */,
+			);
+			path = CandySorter;
+			sourceTree = "<group>";
+		};
+		CFBE287318C2AB3900DDB182 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE287418C2AB3900DDB182 /* CandySorter-Info.plist */,
+				CFBE287518C2AB3900DDB182 /* InfoPlist.strings */,
+				CFBE287818C2AB3900DDB182 /* main.m */,
+				CFBE287A18C2AB3900DDB182 /* CandySorter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFBE289118C2AB3900DDB182 /* CandySorterTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE289718C2AB3900DDB182 /* CandySorterTests.m */,
+				CFBE289218C2AB3900DDB182 /* Supporting Files */,
+			);
+			path = CandySorterTests;
+			sourceTree = "<group>";
+		};
+		CFBE289218C2AB3900DDB182 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE289318C2AB3900DDB182 /* CandySorterTests-Info.plist */,
+				CFBE289418C2AB3900DDB182 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFBE286818C2AB3900DDB182 /* CandySorter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFBE289B18C2AB3900DDB182 /* Build configuration list for PBXNativeTarget "CandySorter" */;
+			buildPhases = (
+				CFBE286518C2AB3900DDB182 /* Sources */,
+				CFBE286618C2AB3900DDB182 /* Frameworks */,
+				CFBE286718C2AB3900DDB182 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CandySorter;
+			productName = CandySorter;
+			productReference = CFBE286918C2AB3900DDB182 /* CandySorter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFBE288918C2AB3900DDB182 /* CandySorterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFBE289E18C2AB3900DDB182 /* Build configuration list for PBXNativeTarget "CandySorterTests" */;
+			buildPhases = (
+				CFBE288618C2AB3900DDB182 /* Sources */,
+				CFBE288718C2AB3900DDB182 /* Frameworks */,
+				CFBE288818C2AB3900DDB182 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFBE289018C2AB3900DDB182 /* PBXTargetDependency */,
+			);
+			name = CandySorterTests;
+			productName = CandySorterTests;
+			productReference = CFBE288A18C2AB3900DDB182 /* CandySorterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFBE286118C2AB3900DDB182 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Zakk Hoyt";
+				TargetAttributes = {
+					CFBE288918C2AB3900DDB182 = {
+						TestTargetID = CFBE286818C2AB3900DDB182;
+					};
+				};
+			};
+			buildConfigurationList = CFBE286418C2AB3900DDB182 /* Build configuration list for PBXProject "CandySorter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CFBE286018C2AB3900DDB182;
+			productRefGroup = CFBE286A18C2AB3900DDB182 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFBE286818C2AB3900DDB182 /* CandySorter */,
+				CFBE288918C2AB3900DDB182 /* CandySorterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFBE286718C2AB3900DDB182 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE288518C2AB3900DDB182 /* Images.xcassets in Resources */,
+				CFBE287718C2AB3900DDB182 /* InfoPlist.strings in Resources */,
+				CFBE288018C2AB3900DDB182 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFBE288818C2AB3900DDB182 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE289618C2AB3900DDB182 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFBE286518C2AB3900DDB182 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE288318C2AB3900DDB182 /* ViewController.m in Sources */,
+				CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */,
+				CFBE287918C2AB3900DDB182 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFBE288618C2AB3900DDB182 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFBE289818C2AB3900DDB182 /* CandySorterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFBE289018C2AB3900DDB182 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFBE286818C2AB3900DDB182 /* CandySorter */;
+			targetProxy = CFBE288F18C2AB3900DDB182 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFBE287518C2AB3900DDB182 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFBE287618C2AB3900DDB182 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CFBE287E18C2AB3900DDB182 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFBE287F18C2AB3900DDB182 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFBE289418C2AB3900DDB182 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFBE289518C2AB3900DDB182 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFBE289918C2AB3900DDB182 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CFBE289A18C2AB3900DDB182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFBE289C18C2AB3900DDB182 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
+				INFOPLIST_FILE = "CandySorter/CandySorter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CFBE289D18C2AB3900DDB182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
+				INFOPLIST_FILE = "CandySorter/CandySorter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CFBE289F18C2AB3900DDB182 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CandySorter.app/CandySorter";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CandySorterTests/CandySorterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CFBE28A018C2AB3900DDB182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CandySorter.app/CandySorter";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
+				INFOPLIST_FILE = "CandySorterTests/CandySorterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFBE286418C2AB3900DDB182 /* Build configuration list for PBXProject "CandySorter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFBE289918C2AB3900DDB182 /* Debug */,
+				CFBE289A18C2AB3900DDB182 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFBE289B18C2AB3900DDB182 /* Build configuration list for PBXNativeTarget "CandySorter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFBE289C18C2AB3900DDB182 /* Debug */,
+				CFBE289D18C2AB3900DDB182 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CFBE289E18C2AB3900DDB182 /* Build configuration list for PBXNativeTarget "CandySorterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFBE289F18C2AB3900DDB182 /* Debug */,
+				CFBE28A018C2AB3900DDB182 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFBE286118C2AB3900DDB182 /* Project object */;
+}
