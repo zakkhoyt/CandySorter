@@ -33,8 +33,7 @@ typedef enum {
               red:(NSUInteger)red
             green:(NSUInteger)green
              blue:(NSUInteger)blue
-              hue:(NSNumber*)hue
-        candyType:(VWWColorCandyType)candyType;
+              hue:(NSNumber*)hue;
 
 -(NSString*)description;
 -(NSString*)prettyDescription;

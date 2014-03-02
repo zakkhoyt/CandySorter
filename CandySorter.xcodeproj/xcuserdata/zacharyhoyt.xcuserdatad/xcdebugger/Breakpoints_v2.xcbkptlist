@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CandySorter/Model/VWWColor.m"
-            timestampString = "415413596.32408"
+            timestampString = "415418196.799388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-hexValue"
             landmarkType = "5">
          </BreakpointContent>

@@ -25,57 +25,65 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Don't draw a crosshair if the user hasn't touched yet.
-    if(_selectedPixel.x == 0 && _selectedPixel.y == 0){
-        return;
-    }
     
     const int kCrosshairLength = 50;
     
     CGContextRef c = UIGraphicsGetCurrentContext();
+
     
-    CGFloat color[4] = {1, 1, 1, 1};        // r,g,b,a
-    CGContextSetStrokeColor(c, color);
-    CGContextBeginPath(c);
-    
-    CGFloat startX = _selectedPixel.x - (kCrosshairLength/2);
-    if(startX < 0) startX = 0;
-    
-    CGFloat finishX = _selectedPixel.x + (kCrosshairLength/2);
-    if(finishX > self.bounds.size.width) finishX = self.bounds.size.width;
-    
-    CGFloat startY = _selectedPixel.y - (kCrosshairLength/2);
-    if(startY < 0) startY = 0;
-    
-    CGFloat finishY = _selectedPixel.y + (kCrosshairLength/2);
-    if(finishY > self.bounds.size.height) finishY = self.bounds.size.height;
-    
-    //    NSLog(@"startX=%f x=%f finishX=%f startY=%f y=%f finishY=%f",
-    //          startX,
-    //          _selectedPixel.x,
-    //          finishX,
-    //          startY,
-    //          _selectedPixel.y,
-    //          finishY);
-    
-    // draw horiontal hair
-    CGContextMoveToPoint(c,
-                         startX,
-                         _selectedPixel.y);
-    
-    CGContextAddLineToPoint(c,
-                            finishX,
-                            _selectedPixel.y);
-    
-    // draw vertical hair
-    CGContextMoveToPoint(c,
-                         _selectedPixel.x,
-                         startY);
-    CGContextAddLineToPoint(c,
-                            _selectedPixel.x,
-                            finishY);
-    
-    CGContextStrokePath(c);
+    for(NSValue *value in self.crosshairPoints){
+        
+        
+        CGPoint selectedPixel = [value CGPointValue];
+        // Don't draw a crosshair if the user hasn't touched yet.
+        if(selectedPixel.x == 0 && selectedPixel.y == 0){
+            return;
+        }
+        
+        
+        CGFloat color[4] = {1, 1, 1, 1};        // r,g,b,a
+        CGContextSetStrokeColor(c, color);
+        CGContextBeginPath(c);
+        
+        CGFloat startX = selectedPixel.x - (kCrosshairLength/2);
+        if(startX < 0) startX = 0;
+        
+        CGFloat finishX = selectedPixel.x + (kCrosshairLength/2);
+        if(finishX > self.bounds.size.width) finishX = self.bounds.size.width;
+        
+        CGFloat startY = selectedPixel.y - (kCrosshairLength/2);
+        if(startY < 0) startY = 0;
+        
+        CGFloat finishY = selectedPixel.y + (kCrosshairLength/2);
+        if(finishY > self.bounds.size.height) finishY = self.bounds.size.height;
+        
+        //    NSLog(@"startX=%f x=%f finishX=%f startY=%f y=%f finishY=%f",
+        //          startX,
+        //          _selectedPixel.x,
+        //          finishX,
+        //          startY,
+        //          _selectedPixel.y,
+        //          finishY);
+        
+        // draw horiontal hair
+        CGContextMoveToPoint(c,
+                             startX,
+                             selectedPixel.y);
+        
+        CGContextAddLineToPoint(c,
+                                finishX,
+                                selectedPixel.y);
+        
+        // draw vertical hair
+        CGContextMoveToPoint(c,
+                             selectedPixel.x,
+                             startY);
+        CGContextAddLineToPoint(c,
+                                selectedPixel.x,
+                                finishY);
+        
+        CGContextStrokePath(c);
+    }
 }
 
 
@@ -106,10 +114,10 @@
 
 - (void)touchEvent:(NSSet *)touches withEvent:(UIEvent *)event{
     [self setNeedsDisplay];
-    UITouch *touch = [[event allTouches] anyObject];
-    _selectedPixel = [touch locationInView:self];
-    CGPoint point = [touch locationInView:self];
-    [self.delegate crosshairViewTouchOccurredAtPoint:point];
+//    UITouch *touch = [[event allTouches] anyObject];
+//    _selectedPixel = [touch locationInView:self];
+//    CGPoint point = [touch locationInView:self];
+//    [self.delegate crosshairViewTouchOccurredAtPoint:point];
 }
 
 

@@ -57,7 +57,20 @@
     [super viewWillAppear:animated];
     self.bleController.delegate = self;
     self.navigationController.navigationBarHidden = YES;
-    self.crosshairView.selectedPixel = self.crosshairView.center;
+
+    CGPoint center = self.crosshairView.center;
+    CGFloat delta = 20.0;
+    NSArray *points = @[[NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y - delta)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y - delta)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y - delta)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y + delta)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y + delta)],
+                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y + delta)]];
+//    NSArray *values = @[value];
+    self.crosshairView.crosshairPoints = points;
     [self startCamera];
 }
 
@@ -283,8 +296,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     //    NSLog(@"r=%f g=%f b=%f a=%f", red, green, blue, alpha);
     
     
-    
-    VWWColor *color = [[VWWColors sharedInstance]closestColorFromRed:red green:green blue:blue];
+  
+    VWWColor *color = [[VWWColor alloc]initWithName:@"?" hex:@"" red:red*100 green:green*100 blue:blue*100 hue:0];
+//    VWWColor *color = [[VWWColors sharedInstance]closestColorFromRed:red green:green blue:blue];
     
 //    VWW_Color* color = [self.colors colorFromRed:[NSNumber numberWithInt:red*100]
 //                                           Green:[NSNumber numberWithInt:green*100]

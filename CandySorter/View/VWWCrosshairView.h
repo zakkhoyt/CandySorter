@@ -18,5 +18,8 @@
 
 @interface VWWCrosshairView : UIView
 @property (nonatomic, weak) id <VWWCrosshairViewDelegate> delegate;
-@property (nonatomic) CGPoint selectedPixel;
+//@property (nonatomic) CGPoint selectedPixel;
+@property (nonatomic, strong) NSArray *crosshairPoints;
+
+
 @end

@@ -29,6 +29,20 @@
 }
 
 
+-(id)init{
+    self = [super init];
+    if(self){
+        [self loadCandyColors];
+    }
+    return self;
+}
+
+-(void)loadCandyColors{
+
+}
+
+
+
 -(BOOL)openColorsFileWithPath:(NSString*)path{
 //    [self.colorsDictionary removeAllObjects];
 //    [self.colorsKeys removeAllObjects];

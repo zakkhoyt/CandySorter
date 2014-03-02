@@ -138,7 +138,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="blueLabel" destination="NNS-WJ-qZV" id="RUY-UZ-5b4"/>
-                        <outlet property="cameraView" destination="FHe-a5-pcL" id="Pi8-u0-p3J"/>
+                        <outlet property="cameraView" destination="Npg-2g-ebv" id="Qxt-xF-yZ1"/>
                         <outlet property="colorContainerView" destination="nZ7-1F-j4e" id="BtR-2f-aeH"/>
                         <outlet property="colorView" destination="to8-7T-053" id="vv4-8Y-8Nx"/>
                         <outlet property="crosshairView" destination="FHe-a5-pcL" id="qLq-eS-1A6"/>

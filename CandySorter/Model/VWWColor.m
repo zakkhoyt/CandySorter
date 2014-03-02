@@ -21,8 +21,7 @@
               red:(NSUInteger)red
             green:(NSUInteger)green
              blue:(NSUInteger)blue
-              hue:(NSNumber*)hue
-        candyType:(VWWColorCandyType)candyType{
+              hue:(NSNumber*)hue{
     
     self = [super init];
     if(self){
@@ -34,7 +33,6 @@
         _blue = blue / (float)100;
         _hue = hue;
         _uiColor = [UIColor colorWithRed:_red green:_green blue:_blue alpha:1.0];
-        _candyType = candyType;
     }
     return self;
 }
