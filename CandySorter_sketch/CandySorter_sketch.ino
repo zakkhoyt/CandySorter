@@ -23,8 +23,8 @@
 //Servo myservo;
 
 // VWW Defines
-const unsigned int kEntryServo = 9;
-const unsigned int kExitServo = 10;
+const unsigned int kLoadServo = 9;
+const unsigned int kDropServo = 10;
 const unsigned int kPickupPosition = 160;
 const unsigned int kInspectPosition = 90;
 const unsigned int kDropPosition = 20;
@@ -33,8 +33,8 @@ const unsigned int kMaxPosition = 160;
 const unsigned int kNumChoices = 12;
 
 
-Servo entryServo;
-Servo exitServo;
+Servo loadServo;
+Servo dropServo;
 int pos = 0;    // variable to store the servo position 
 
 
@@ -66,10 +66,10 @@ void setup()
 
 #if defined(VWW_ENBABLE_SERVOS)
   Serial.begin(9600);
-  Serial.println("Init entry servo");
-  entryServo.attach(kEntryServo);
-  Serial.println("Init exit servo");
-  exitServo.attach(kExitServo);
+  Serial.println("Init load servo");
+  loadServo.attach(kLoadServo);
+  Serial.println("Init drop servo");
+  dropServo.attach(kDropServo);
 #endif
 }
 
@@ -165,8 +165,8 @@ void loop()
   
   //  for(pos = 0; pos < 160; pos += 1)  // goes from 0 degrees to 180 degrees 
 //  {                                  // in steps of 1 degree 
-//    entryServo.write(pos);              // tell servo to go to position in variable 'pos' 
-//    exitServo.write(pos);
+//    loadServo.write(pos);              // tell servo to go to position in variable 'pos' 
+//    dropServo.write(pos);
 //    delay(15);                       // waits 15ms for the servo to reach the position 
 //  } 
 
@@ -199,15 +199,15 @@ void loop()
 
 
 void pickupCandy(){
-    entryServo.write(kPickupPosition); 
+    loadServo.write(kPickupPosition); 
 }
 
 void inspectCandy(){
-    entryServo.write(kInspectPosition); 
+    loadServo.write(kInspectPosition); 
 }
 
 void dropCandy(){
-    entryServo.write(kDropPosition);  
+    loadServo.write(kDropPosition);  
 }
 
 void dispenseCandy(unsigned int pos, unsigned int totalPositions){
@@ -222,7 +222,7 @@ void dispenseCandy(unsigned int pos, unsigned int totalPositions){
 
 
 
-  exitServo.write(p);
+  dropServo.write(p);
 }
 
 
