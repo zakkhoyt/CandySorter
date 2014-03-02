@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */; };
+		CF10A26518C30E1300E22EB3 /* VWWWolfTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */; };
 		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
 		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		CF10A25E18C3041700E22EB3 /* CandySorter_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.c; path = CandySorter_sketch.ino; sourceTree = "<group>"; };
 		CF10A25F18C3041700E22EB3 /* CandySorter_sketch.ino_servos */ = {isa = PBXFileReference; lastKnownFileType = text; path = CandySorter_sketch.ino_servos; sourceTree = "<group>"; };
+		CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWCommandsTableViewController.h; sourceTree = "<group>"; };
+		CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWCommandsTableViewController.m; sourceTree = "<group>"; };
+		CF10A26318C30E1300E22EB3 /* VWWWolfTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWWolfTableViewController.h; sourceTree = "<group>"; };
+		CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWWolfTableViewController.m; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -241,6 +247,10 @@
 				CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */,
 				CFBE28B718C2B1DB00DDB182 /* VWWDefaultViewController.h */,
 				CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */,
+				CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */,
+				CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */,
+				CF10A26318C30E1300E22EB3 /* VWWWolfTableViewController.h */,
+				CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */,
 			);
 			name = GUI;
 			path = Controllers/GUI;
@@ -384,6 +394,8 @@
 				CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */,
 				CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */,
 				CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */,
+				CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */,
+				CF10A26518C30E1300E22EB3 /* VWWWolfTableViewController.m in Sources */,
 				CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

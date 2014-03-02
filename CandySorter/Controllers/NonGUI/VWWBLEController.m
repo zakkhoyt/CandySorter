@@ -9,6 +9,52 @@
 #import "VWWBLEController.h"
 #import "BLE.h"
 
+
+
+
+// We will be sending commands to the arduino and back with 3 byte commds:
+//          [0]         [1]         [2]
+// data[] = [command]   [param1]    [param2]
+//
+// So for example if we want to tell arduino to drop a piece of candy in bin 4:
+//  UInt8 buf[3] = {kDropCandyCommand, 0x04, 0xXX};
+//  NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+//  [self.ble write:data];
+//
+// Likewise, when we send a command from the arudino to iOS parse it like this
+//-(void)bleDidReceiveData:(unsigned char *)data length:(int)length{
+//    VWW_LOG_INFO(@"Length: %d", length);
+//    
+//    // parse data, all commands are in 3-byte
+//    for (int i = 0; i < length; i+=3){
+//        VWW_LOG_INFO(@"0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
+//        
+//        if (data[i] == kCandyWasDroppedCommand){
+//            VWW_LOG_INFO(@"Candy was dropped");
+//            
+//            // Parse param1
+//            if (data[i+1] == 0x01){
+//            } else {
+//            }
+//            
+//            // Parse param2
+//            if (data[i+2] == 0x01){
+//            } else {
+//            }
+//        }
+//    }
+//}
+
+const u_int8_t kLoadCandyCommand = 0xB0;
+const u_int8_t kDropCandyCommand = 0xB1;
+
+const u_int8_t kCandyWasLoadedCommand = 0xC0;
+const u_int8_t kCandyWasDroppedCommand = 0xC1;
+
+
+
+
+
 @interface VWWBLEController () <BLEDelegate>
 @property (strong, nonatomic) BLE *ble;
 @end
@@ -93,8 +139,28 @@
 -(void)bleDidUpdateRSSI:(NSNumber *)rssi{
     VWW_LOG_TRACE;
 }
--(void)bleDidReceiveData:(unsigned char *) data length:(int) length{
-    VWW_LOG_TRACE;
+-(void)bleDidReceiveData:(unsigned char *)data length:(int)length{
+    VWW_LOG_INFO(@"Length: %d", length);
+    
+    // parse data, all commands are in 3-byte
+    for (int i = 0; i < length; i+=3){
+        VWW_LOG_INFO(@"0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
+        
+        if (data[i] == kCandyWasDroppedCommand){
+            VWW_LOG_INFO(@"Candy was dropped");
+            
+//            // Parse param1
+//            if (data[i+1] == 0x01){
+//            } else {
+//            }
+            
+//            // Parse param2
+//            if (data[i+2] == 0x01){
+//            } else {
+//            }
+        }
+    }
+    
 }
 
 
