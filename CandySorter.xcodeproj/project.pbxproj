@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */; };
-		CF10A26518C30E1300E22EB3 /* VWWWolfTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */; };
+		CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */; };
+		CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */; };
+		CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */; };
 		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
 		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
@@ -49,8 +51,12 @@
 		CF10A25F18C3041700E22EB3 /* CandySorter_sketch.ino_servos */ = {isa = PBXFileReference; lastKnownFileType = text; path = CandySorter_sketch.ino_servos; sourceTree = "<group>"; };
 		CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWCommandsTableViewController.h; sourceTree = "<group>"; };
 		CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWCommandsTableViewController.m; sourceTree = "<group>"; };
-		CF10A26318C30E1300E22EB3 /* VWWWolfTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWWolfTableViewController.h; sourceTree = "<group>"; };
-		CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWWolfTableViewController.m; sourceTree = "<group>"; };
+		CF10A26318C30E1300E22EB3 /* VWWDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWDetailsTableViewController.h; sourceTree = "<group>"; };
+		CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWDetailsTableViewController.m; sourceTree = "<group>"; };
+		CF5C428218C316C7006A1260 /* VWWBinTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBinTableViewCell.h; sourceTree = "<group>"; };
+		CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinTableViewCell.m; sourceTree = "<group>"; };
+		CF5C428618C318AC006A1260 /* VWWBinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBinsTableViewController.h; sourceTree = "<group>"; };
+		CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinsTableViewController.m; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,6 +129,61 @@
 				CF10A25F18C3041700E22EB3 /* CandySorter_sketch.ino_servos */,
 			);
 			path = CandySorter_sketch;
+			sourceTree = "<group>";
+		};
+		CF5C428018C3169D006A1260 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */,
+				CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
+		CF5C428118C316AA006A1260 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CF5C428218C316C7006A1260 /* VWWBinTableViewCell.h */,
+				CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		CF5C428518C31898006A1260 /* Bins */ = {
+			isa = PBXGroup;
+			children = (
+				CF5C428118C316AA006A1260 /* Cell */,
+				CF5C428618C318AC006A1260 /* VWWBinsTableViewController.h */,
+				CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */,
+			);
+			name = Bins;
+			sourceTree = "<group>";
+		};
+		CF5C428918C31967006A1260 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28B518C2B1DB00DDB182 /* VWWScannerViewController.h */,
+				CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */,
+			);
+			name = Scanner;
+			sourceTree = "<group>";
+		};
+		CF5C428A18C3196F006A1260 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28B718C2B1DB00DDB182 /* VWWDefaultViewController.h */,
+				CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */,
+			);
+			name = Default;
+			sourceTree = "<group>";
+		};
+		CF5C428B18C3197B006A1260 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				CF10A26318C30E1300E22EB3 /* VWWDetailsTableViewController.h */,
+				CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */,
+			);
+			name = Details;
 			sourceTree = "<group>";
 		};
 		CFBE286018C2AB3900DDB182 = {
@@ -243,14 +304,11 @@
 		CFBE28B418C2B1DB00DDB182 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				CFBE28B518C2B1DB00DDB182 /* VWWScannerViewController.h */,
-				CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */,
-				CFBE28B718C2B1DB00DDB182 /* VWWDefaultViewController.h */,
-				CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */,
-				CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */,
-				CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */,
-				CF10A26318C30E1300E22EB3 /* VWWWolfTableViewController.h */,
-				CF10A26418C30E1300E22EB3 /* VWWWolfTableViewController.m */,
+				CF5C428518C31898006A1260 /* Bins */,
+				CF5C428018C3169D006A1260 /* Commands */,
+				CF5C428A18C3196F006A1260 /* Default */,
+				CF5C428B18C3197B006A1260 /* Details */,
+				CF5C428918C31967006A1260 /* Scanner */,
 			);
 			name = GUI;
 			path = Controllers/GUI;
@@ -385,6 +443,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */,
+				CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */,
 				CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */,
 				CFBE28C418C2B1DB00DDB182 /* VWWColorView.m in Sources */,
 				CFBE28C518C2B1DB00DDB182 /* VWWCrosshairView.m in Sources */,
@@ -395,7 +455,7 @@
 				CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */,
 				CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */,
 				CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */,
-				CF10A26518C30E1300E22EB3 /* VWWWolfTableViewController.m in Sources */,
+				CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */,
 				CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
 				INFOPLIST_FILE = "CandySorter/CandySorter-Info.plist";
@@ -536,6 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CandySorter/CandySorter-Prefix.pch";
 				INFOPLIST_FILE = "CandySorter/CandySorter-Info.plist";

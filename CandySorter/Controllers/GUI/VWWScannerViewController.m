@@ -14,6 +14,16 @@
 #import "VWWColor.h"
 #import "VWWCrosshairView.h"
 #import "VWWBLEController.h"
+
+#import "VWWDetailsTableViewController.h"
+#import "VWWCommandsTableViewController.h"
+
+
+
+static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
+static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
+static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
+
 @interface VWWScannerViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, VWWBLEControllerDelegate>
 @property dispatch_queue_t avqueue;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
@@ -71,7 +81,9 @@
                         [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y + delta)]];
 //    NSArray *values = @[value];
     self.crosshairView.crosshairPoints = points;
-    [self startCamera];
+    
+    
+//    [self startCamera];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,15 +93,15 @@
 }
 
 #pragma mark IBActions
+- (IBAction)cmdButtonTouchUpInside:(id)sender {
+    [self performSegueWithIdentifier:VWWSegueScannerToCommands sender:self];
+}
 
-- (IBAction)startButtonTouchUpInside:(id)sender {
-    if([self isCameraAvailable]){
-        dispatch_async(self.avqueue, ^{
-            [self startCamera];
-        });
-        [self showColorView];
-    }
-
+- (IBAction)detailsButtonTouchUpInside:(id)sender {
+    [self performSegueWithIdentifier:VWWSegueScannerToDetails sender:self];
+}
+- (IBAction)binsButtonTouchUpInside:(id)sender {
+    [self performSegueWithIdentifier:VWWSegueScannerToBins sender:self];
 }
 
 #pragma mark Private methods

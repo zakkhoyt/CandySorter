@@ -1,5 +1,5 @@
 //
-//  VWWWolfTableViewController.h
+//  VWWDetailsTableViewController.h
 //  CandySorter
 //
 //  Created by Zakk Hoyt on 3/1/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VWWWolfTableViewController : UITableViewController
+@interface VWWDetailsTableViewController : UITableViewController
 
 @end

@@ -1,5 +1,5 @@
 //
-//  VWWCommandsTableViewController.h
+//  VWWBinsTableViewController.h
 //  CandySorter
 //
 //  Created by Zakk Hoyt on 3/1/14.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface VWWCommandsTableViewController : UITableViewController
+@interface VWWBinsTableViewController : UITableViewController
 
 @end
