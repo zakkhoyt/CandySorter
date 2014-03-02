@@ -40,7 +40,7 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 @property (weak, nonatomic) IBOutlet VWWCrosshairView *crosshairView;
 
 @property (nonatomic, strong) VWWBLEController *bleController;
-
+@property (nonatomic, strong) NSArray *points;
 @end
 
 @implementation VWWScannerViewController
@@ -60,6 +60,20 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
     self.avqueue = dispatch_queue_create("com.vaporwarewolf.colorblind", NULL);
     self.crosshairView.userInteractionEnabled = NO;
     self.bleController = [VWWBLEController sharedInstance];
+    
+    CGPoint center = self.crosshairView.center;
+    CGFloat delta = 20.0;
+    self.points = @[[NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y - delta)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x, center.y - delta)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y - delta)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x, center.y)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y + delta)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x, center.y + delta)],
+                    [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y + delta)]];
+
+    self.crosshairView.crosshairPoints = self.points;
 }
 
 
@@ -67,23 +81,11 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
     [super viewWillAppear:animated];
     self.bleController.delegate = self;
     self.navigationController.navigationBarHidden = YES;
-
-    CGPoint center = self.crosshairView.center;
-    CGFloat delta = 20.0;
-    NSArray *points = @[[NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y - delta)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y - delta)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y - delta)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x - delta, center.y + delta)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x, center.y + delta)],
-                        [NSValue valueWithCGPoint:CGPointMake(center.x + delta, center.y + delta)]];
-//    NSArray *values = @[value];
-    self.crosshairView.crosshairPoints = points;
     
-    
-//    [self startCamera];
+#if TARGET_IPHONE_SIMULATOR
+#else
+    [self startCamera];
+#endif
 }
 
 - (void)didReceiveMemoryWarning

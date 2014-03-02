@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface VWWBinTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSString *labelText;
 @end

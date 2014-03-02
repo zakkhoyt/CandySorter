@@ -61,6 +61,9 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 
 @implementation VWWBLEController
 
+
+#pragma mark Public methods
+
 +(VWWBLEController*)sharedInstance{
     static VWWBLEController *instance;
     static dispatch_once_t once;
@@ -82,15 +85,12 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 }
 
 
-
-#pragma mark Private methods
-
 // Connect button will call to this
 -(void)scanForPeripherals{
     if (self.ble.activePeripheral){
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected){
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
-//            [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+            //            [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
             VWW_LOG_INFO(@"Found peripheral devices");
             return;
         }
@@ -99,15 +99,33 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
         self.ble.peripherals = nil;
     }
     
-//    [btnConnect setEnabled:false];
+    //    [btnConnect setEnabled:false];
     VWW_LOG_INFO(@"Enable connect button here");
     [self.ble findBLEPeripherals:2];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
     
-//    [indConnecting startAnimating];
+    //    [indConnecting startAnimating];
     VWW_LOG_INFO(@"Start animating...");
 }
+
+
+-(void)loadCandy{
+    UInt8 buf[3] = {kLoadCandyCommand, 0x00, 0x00};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+
+}
+-(void)dropCandyInBin:(UInt8)bin{
+    UInt8 buf[3] = {0x01, 0x00, 0x00};
+    buf[1] = bin;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+}
+
+
+
+#pragma mark Private methods
 
 -(void)connectionTimer:(NSTimer *)timer{
 //    [btnConnect setEnabled:true];
@@ -146,8 +164,8 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
     for (int i = 0; i < length; i+=3){
         VWW_LOG_INFO(@"0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
         
-        if (data[i] == kCandyWasDroppedCommand){
-            VWW_LOG_INFO(@"Candy was dropped");
+        if(data[i] == kCandyWasLoadedCommand){
+            VWW_LOG_INFO(@"Candy was loaded");
             
 //            // Parse param1
 //            if (data[i+1] == 0x01){
@@ -158,9 +176,14 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 //            if (data[i+2] == 0x01){
 //            } else {
 //            }
+        } else if(data[i] == kCandyWasDroppedCommand){
+            VWW_LOG_INFO(@"Candy was dropped");
+            [self.delegate bleControllerDidLoadCandy:self];
+        } else {
+            VWW_LOG_INFO(@"Received unknown command");
+            [self.delegate bleControllerDidDropCandy:self];
         }
     }
-    
 }
 
 

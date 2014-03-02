@@ -1,4 +1,6 @@
 
+
+// BLE libraries available here: http://redbearlab.com/rbl_library
 // Redbear includes
 #include <SPI.h>
 #include <boards.h>

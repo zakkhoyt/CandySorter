@@ -11,6 +11,7 @@
 		CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */; };
 		CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */; };
 		CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */; };
+		CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428D18C31F2B006A1260 /* VWWScannerController.m */; };
 		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
 		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 		CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinTableViewCell.m; sourceTree = "<group>"; };
 		CF5C428618C318AC006A1260 /* VWWBinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBinsTableViewController.h; sourceTree = "<group>"; };
 		CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinsTableViewController.m; sourceTree = "<group>"; };
+		CF5C428C18C31F2B006A1260 /* VWWScannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWScannerController.h; sourceTree = "<group>"; };
+		CF5C428D18C31F2B006A1260 /* VWWScannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWScannerController.m; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -319,6 +322,8 @@
 			children = (
 				CFBE28BA18C2B1DB00DDB182 /* VWWBLEController.h */,
 				CFBE28BB18C2B1DB00DDB182 /* VWWBLEController.m */,
+				CF5C428C18C31F2B006A1260 /* VWWScannerController.h */,
+				CF5C428D18C31F2B006A1260 /* VWWScannerController.m */,
 			);
 			name = NonGUI;
 			path = Controllers/NonGUI;
@@ -457,6 +462,7 @@
 				CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */,
 				CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */,
 				CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */,
+				CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,7 @@
 //  Created by Zakk Hoyt on 3/1/14.
 //  Copyright (c) 2014 Zakk Hoyt. All rights reserved.
 //
+// BLE libraries available here: http://redbearlab.com/rbl_library
 
 
 // The interface between iOS and arduino will use this class which uses BLE.
@@ -49,6 +50,8 @@
 -(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi;
 -(void)bleController:(VWWBLEController*)sender didLoadCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
 -(void)bleController:(VWWBLEController*)sender didDropCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
+-(void)bleControllerDidLoadCandy:(VWWBLEController*)sender;
+-(void)bleControllerDidDropCandy:(VWWBLEController*)sender;
 @end
 
 
@@ -56,5 +59,9 @@
 +(VWWBLEController*)sharedInstance;
 
 -(void)scanForPeripherals;
+-(void)loadCandy;
+-(void)dropCandyInBin:(UInt8)bin;
+
+
 @property (nonatomic, weak) id <VWWBLEControllerDelegate> delegate;
 @end
