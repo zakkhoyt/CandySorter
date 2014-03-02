@@ -22,8 +22,14 @@
 		CFBE289818C2AB3900DDB182 /* CandySorterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE289718C2AB3900DDB182 /* CandySorterTests.m */; };
 		CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28A318C2AB8300DDB182 /* BLE.m */; };
 		CFBE28A718C2AB9A00DDB182 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */; };
-		CFBE28AA18C2ABF000DDB182 /* VWWDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */; };
-		CFBE28B118C2AC5E00DDB182 /* VWWBLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */; };
+		CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */; };
+		CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */; };
+		CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28BB18C2B1DB00DDB182 /* VWWBLEController.m */; };
+		CFBE28C418C2B1DB00DDB182 /* VWWColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28BE18C2B1DB00DDB182 /* VWWColorView.m */; };
+		CFBE28C518C2B1DB00DDB182 /* VWWCrosshairView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28C018C2B1DB00DDB182 /* VWWCrosshairView.m */; };
+		CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28C818C2B24700DDB182 /* VWWColor.m */; };
+		CFBE28CC18C2B24700DDB182 /* VWWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28CA18C2B24700DDB182 /* VWWColors.m */; };
+		CFBE28CE18C2B28400DDB182 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE28CD18C2B28400DDB182 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +64,22 @@
 		CFBE28A318C2AB8300DDB182 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		CFBE28A418C2AB8300DDB182 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		CFBE28A818C2ABF000DDB182 /* VWWDefaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWDefaultViewController.h; sourceTree = "<group>"; };
-		CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWDefaultViewController.m; sourceTree = "<group>"; };
-		CFBE28AF18C2AC5E00DDB182 /* VWWBLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBLEController.h; sourceTree = "<group>"; };
-		CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBLEController.m; sourceTree = "<group>"; };
 		CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWUtilities.h; sourceTree = "<group>"; };
+		CFBE28B518C2B1DB00DDB182 /* VWWScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWScannerViewController.h; sourceTree = "<group>"; };
+		CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWScannerViewController.m; sourceTree = "<group>"; };
+		CFBE28B718C2B1DB00DDB182 /* VWWDefaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWDefaultViewController.h; sourceTree = "<group>"; };
+		CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWDefaultViewController.m; sourceTree = "<group>"; };
+		CFBE28BA18C2B1DB00DDB182 /* VWWBLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBLEController.h; sourceTree = "<group>"; };
+		CFBE28BB18C2B1DB00DDB182 /* VWWBLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBLEController.m; sourceTree = "<group>"; };
+		CFBE28BD18C2B1DB00DDB182 /* VWWColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWColorView.h; sourceTree = "<group>"; };
+		CFBE28BE18C2B1DB00DDB182 /* VWWColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWColorView.m; sourceTree = "<group>"; };
+		CFBE28BF18C2B1DB00DDB182 /* VWWCrosshairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWCrosshairView.h; sourceTree = "<group>"; };
+		CFBE28C018C2B1DB00DDB182 /* VWWCrosshairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWCrosshairView.m; sourceTree = "<group>"; };
+		CFBE28C718C2B24700DDB182 /* VWWColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWColor.h; sourceTree = "<group>"; };
+		CFBE28C818C2B24700DDB182 /* VWWColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWColor.m; sourceTree = "<group>"; };
+		CFBE28C918C2B24700DDB182 /* VWWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWColors.h; sourceTree = "<group>"; };
+		CFBE28CA18C2B24700DDB182 /* VWWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWColors.m; sourceTree = "<group>"; };
+		CFBE28CD18C2B28400DDB182 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBE28CE18C2B28400DDB182 /* AVFoundation.framework in Frameworks */,
 				CFBE28A718C2AB9A00DDB182 /* CoreBluetooth.framework in Frameworks */,
 				CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */,
 				CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */,
@@ -112,6 +130,7 @@
 		CFBE286B18C2AB3900DDB182 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE28CD18C2B28400DDB182 /* AVFoundation.framework */,
 				CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */,
 				CFBE28A118C2AB8300DDB182 /* BLE */,
 				CFBE286C18C2AB3900DDB182 /* Foundation.framework */,
@@ -127,9 +146,11 @@
 			children = (
 				CFBE28AB18C2AC0600DDB182 /* Controllers */,
 				CFBE288418C2AB3900DDB182 /* Images.xcassets */,
+				CFBE28C618C2B24700DDB182 /* Model */,
 				CFBE287318C2AB3900DDB182 /* Supporting Files */,
 				CFBE28AC18C2AC0F00DDB182 /* UserInterface */,
 				CFBE28B218C2ADA500DDB182 /* Utilities */,
+				CFBE28BC18C2B1DB00DDB182 /* View */,
 			);
 			path = CandySorter;
 			sourceTree = "<group>";
@@ -179,8 +200,8 @@
 		CFBE28AB18C2AC0600DDB182 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CFBE28AD18C2AC3E00DDB182 /* GUI */,
-				CFBE28AE18C2AC4200DDB182 /* NonGUI */,
+				CFBE28B418C2B1DB00DDB182 /* GUI */,
+				CFBE28B918C2B1DB00DDB182 /* NonGUI */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -193,30 +214,56 @@
 			name = UserInterface;
 			sourceTree = "<group>";
 		};
-		CFBE28AD18C2AC3E00DDB182 /* GUI */ = {
-			isa = PBXGroup;
-			children = (
-				CFBE28A818C2ABF000DDB182 /* VWWDefaultViewController.h */,
-				CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */,
-			);
-			name = GUI;
-			sourceTree = "<group>";
-		};
-		CFBE28AE18C2AC4200DDB182 /* NonGUI */ = {
-			isa = PBXGroup;
-			children = (
-				CFBE28AF18C2AC5E00DDB182 /* VWWBLEController.h */,
-				CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */,
-			);
-			name = NonGUI;
-			sourceTree = "<group>";
-		};
 		CFBE28B218C2ADA500DDB182 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CFBE28B418C2B1DB00DDB182 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28B518C2B1DB00DDB182 /* VWWScannerViewController.h */,
+				CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */,
+				CFBE28B718C2B1DB00DDB182 /* VWWDefaultViewController.h */,
+				CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */,
+			);
+			name = GUI;
+			path = Controllers/GUI;
+			sourceTree = "<group>";
+		};
+		CFBE28B918C2B1DB00DDB182 /* NonGUI */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28BA18C2B1DB00DDB182 /* VWWBLEController.h */,
+				CFBE28BB18C2B1DB00DDB182 /* VWWBLEController.m */,
+			);
+			name = NonGUI;
+			path = Controllers/NonGUI;
+			sourceTree = "<group>";
+		};
+		CFBE28BC18C2B1DB00DDB182 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28BD18C2B1DB00DDB182 /* VWWColorView.h */,
+				CFBE28BE18C2B1DB00DDB182 /* VWWColorView.m */,
+				CFBE28BF18C2B1DB00DDB182 /* VWWCrosshairView.h */,
+				CFBE28C018C2B1DB00DDB182 /* VWWCrosshairView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFBE28C618C2B24700DDB182 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28C718C2B24700DDB182 /* VWWColor.h */,
+				CFBE28C818C2B24700DDB182 /* VWWColor.m */,
+				CFBE28C918C2B24700DDB182 /* VWWColors.h */,
+				CFBE28CA18C2B24700DDB182 /* VWWColors.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,11 +363,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFBE28B118C2AC5E00DDB182 /* VWWBLEController.m in Sources */,
+				CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */,
+				CFBE28C418C2B1DB00DDB182 /* VWWColorView.m in Sources */,
+				CFBE28C518C2B1DB00DDB182 /* VWWCrosshairView.m in Sources */,
 				CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */,
-				CFBE28AA18C2ABF000DDB182 /* VWWDefaultViewController.m in Sources */,
+				CFBE28CC18C2B24700DDB182 /* VWWColors.m in Sources */,
 				CFBE287918C2AB3900DDB182 /* main.m in Sources */,
 				CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */,
+				CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */,
+				CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */,
+				CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
