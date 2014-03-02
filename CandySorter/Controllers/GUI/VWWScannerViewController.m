@@ -17,8 +17,7 @@
 
 #import "VWWDetailsTableViewController.h"
 #import "VWWCommandsTableViewController.h"
-
-
+#import "VWWBinsTableViewController.h"
 
 static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
 static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
@@ -41,6 +40,9 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
 @property (nonatomic, strong) VWWBLEController *bleController;
 @property (nonatomic, strong) NSArray *points;
+@property (nonatomic, strong) VWWDetailsTableViewController *detailsViewController;
+@property (nonatomic, strong) VWWCommandsTableViewController *commandsViewController;
+@property (nonatomic, strong) VWWBinsTableViewController *binsViewController;
 @end
 
 @implementation VWWScannerViewController
@@ -96,7 +98,12 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
 #pragma mark IBActions
 - (IBAction)cmdButtonTouchUpInside:(id)sender {
-    [self performSegueWithIdentifier:VWWSegueScannerToCommands sender:self];
+//    [self performSegueWithIdentifier:VWWSegueScannerToCommands sender:self];
+    if(self.commandsViewController == nil){
+        self.commandsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VWWCommandsTableViewController"];
+    }
+    [self showChildViewController:self.commandsViewController];
+    
 }
 
 - (IBAction)detailsButtonTouchUpInside:(id)sender {
@@ -107,6 +114,50 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 }
 
 #pragma mark Private methods
+
+
+-(void)showChildViewController:(UIViewController*)vc{
+    
+    // Set view
+    CGFloat w = 120;
+    CGFloat h = self.view.bounds.size.height;
+    CGFloat x = self.view.bounds.size.width - w;
+    CGFloat y = 0;
+    CGRect frameForView = CGRectMake(x, y, w, h);
+    VWW_LOG_DEBUG(@"Child VC frame: %@", NSStringFromCGRect(frameForView));
+
+    
+    UIView *view = vc.view;
+    view.frame = frameForView;
+    view.alpha = 0.0;
+    
+    
+    
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    [vc didMoveToParentViewController:self];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+-(void)dismissViewController{
+    
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.datePickerViewController.view.alpha = 0.0;
+//    } completion:^(BOOL finished) {
+//        self.datePickerViewController.view.hidden = YES;
+//        [self.datePickerViewController removeFromParentViewController];
+//        self.datePickerViewController = nil;
+//        
+//    }];
+}
+
+
+
 
 -(void)updateColor:(VWWColor*)color{
     _colorView.backgroundColor = color.uiColor;
