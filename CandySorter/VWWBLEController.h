@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VWWBLEController : NSObject
 
+@class VWWBLEController;
+
+@protocol VWWBLEControllerDelegate <NSObject>
+
+-(void)bleControllerDidConnect:(VWWBLEController*)sender;
+-(void)bleControllerDidDisconnect:(VWWBLEController*)sender;
+@end
+
+
+@interface VWWBLEController : NSObject
++(VWWBLEController*)sharedInstance;
+
+-(void)scanForPeripherals;
+@property (nonatomic, weak) id <VWWBLEControllerDelegate> delegate;
 @end

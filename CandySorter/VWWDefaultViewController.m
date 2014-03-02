@@ -7,9 +7,12 @@
 //
 
 #import "VWWDefaultViewController.h"
+#import "VWWBLEController.h"
 
-@interface VWWDefaultViewController ()
+static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
+@interface VWWDefaultViewController () <VWWBLEControllerDelegate>
+@property (nonatomic, strong) VWWBLEController *bleController;
 @end
 
 @implementation VWWDefaultViewController
@@ -26,7 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.bleController = [VWWBLEController sharedInstance];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.bleController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,5 +43,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark IBActions
+- (IBAction)connectButtonTouchUpInside:(id)sender {
+    [self.bleController scanForPeripherals];
+}
+
+#pragma mark VWWBLEControllerDelegate
+
+-(void)bleControllerDidConnect:(VWWBLEController*)sender{
+    [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
+}
+-(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
+    
+}
+
 
 @end

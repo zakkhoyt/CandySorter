@@ -14,13 +14,16 @@
 		CFBE287918C2AB3900DDB182 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE287818C2AB3900DDB182 /* main.m */; };
 		CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE287C18C2AB3900DDB182 /* AppDelegate.m */; };
 		CFBE288018C2AB3900DDB182 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBE287E18C2AB3900DDB182 /* Main.storyboard */; };
-		CFBE288318C2AB3900DDB182 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE288218C2AB3900DDB182 /* ViewController.m */; };
 		CFBE288518C2AB3900DDB182 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBE288418C2AB3900DDB182 /* Images.xcassets */; };
 		CFBE288C18C2AB3900DDB182 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE288B18C2AB3900DDB182 /* XCTest.framework */; };
 		CFBE288D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE288E18C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
 		CFBE289618C2AB3900DDB182 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBE289418C2AB3900DDB182 /* InfoPlist.strings */; };
 		CFBE289818C2AB3900DDB182 /* CandySorterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE289718C2AB3900DDB182 /* CandySorterTests.m */; };
+		CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28A318C2AB8300DDB182 /* BLE.m */; };
+		CFBE28A718C2AB9A00DDB182 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */; };
+		CFBE28AA18C2ABF000DDB182 /* VWWDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */; };
+		CFBE28B118C2AC5E00DDB182 /* VWWBLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +48,21 @@
 		CFBE287B18C2AB3900DDB182 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CFBE287C18C2AB3900DDB182 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CFBE287F18C2AB3900DDB182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CFBE288118C2AB3900DDB182 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CFBE288218C2AB3900DDB182 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CFBE288418C2AB3900DDB182 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFBE288A18C2AB3900DDB182 /* CandySorterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CandySorterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE288B18C2AB3900DDB182 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CFBE289318C2AB3900DDB182 /* CandySorterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CandySorterTests-Info.plist"; sourceTree = "<group>"; };
 		CFBE289518C2AB3900DDB182 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFBE289718C2AB3900DDB182 /* CandySorterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandySorterTests.m; sourceTree = "<group>"; };
+		CFBE28A218C2AB8300DDB182 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		CFBE28A318C2AB8300DDB182 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		CFBE28A418C2AB8300DDB182 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		CFBE28A818C2ABF000DDB182 /* VWWDefaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWDefaultViewController.h; sourceTree = "<group>"; };
+		CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWDefaultViewController.m; sourceTree = "<group>"; };
+		CFBE28AF18C2AC5E00DDB182 /* VWWBLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBLEController.h; sourceTree = "<group>"; };
+		CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBLEController.m; sourceTree = "<group>"; };
+		CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWUtilities.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBE28A718C2AB9A00DDB182 /* CoreBluetooth.framework in Frameworks */,
 				CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */,
 				CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */,
 				CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */,
@@ -101,6 +112,8 @@
 		CFBE286B18C2AB3900DDB182 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */,
+				CFBE28A118C2AB8300DDB182 /* BLE */,
 				CFBE286C18C2AB3900DDB182 /* Foundation.framework */,
 				CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */,
 				CFBE287018C2AB3900DDB182 /* UIKit.framework */,
@@ -112,13 +125,11 @@
 		CFBE287218C2AB3900DDB182 /* CandySorter */ = {
 			isa = PBXGroup;
 			children = (
-				CFBE287B18C2AB3900DDB182 /* AppDelegate.h */,
-				CFBE287C18C2AB3900DDB182 /* AppDelegate.m */,
-				CFBE287E18C2AB3900DDB182 /* Main.storyboard */,
-				CFBE288118C2AB3900DDB182 /* ViewController.h */,
-				CFBE288218C2AB3900DDB182 /* ViewController.m */,
+				CFBE28AB18C2AC0600DDB182 /* Controllers */,
 				CFBE288418C2AB3900DDB182 /* Images.xcassets */,
 				CFBE287318C2AB3900DDB182 /* Supporting Files */,
+				CFBE28AC18C2AC0F00DDB182 /* UserInterface */,
+				CFBE28B218C2ADA500DDB182 /* Utilities */,
 			);
 			path = CandySorter;
 			sourceTree = "<group>";
@@ -126,6 +137,8 @@
 		CFBE287318C2AB3900DDB182 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE287B18C2AB3900DDB182 /* AppDelegate.h */,
+				CFBE287C18C2AB3900DDB182 /* AppDelegate.m */,
 				CFBE287418C2AB3900DDB182 /* CandySorter-Info.plist */,
 				CFBE287518C2AB3900DDB182 /* InfoPlist.strings */,
 				CFBE287818C2AB3900DDB182 /* main.m */,
@@ -150,6 +163,60 @@
 				CFBE289418C2AB3900DDB182 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFBE28A118C2AB8300DDB182 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28A218C2AB8300DDB182 /* BLE.h */,
+				CFBE28A318C2AB8300DDB182 /* BLE.m */,
+				CFBE28A418C2AB8300DDB182 /* BLEDefines.h */,
+			);
+			name = BLE;
+			path = CandySorter/BLE;
+			sourceTree = "<group>";
+		};
+		CFBE28AB18C2AC0600DDB182 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28AD18C2AC3E00DDB182 /* GUI */,
+				CFBE28AE18C2AC4200DDB182 /* NonGUI */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CFBE28AC18C2AC0F00DDB182 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE287E18C2AB3900DDB182 /* Main.storyboard */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		CFBE28AD18C2AC3E00DDB182 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28A818C2ABF000DDB182 /* VWWDefaultViewController.h */,
+				CFBE28A918C2ABF000DDB182 /* VWWDefaultViewController.m */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		CFBE28AE18C2AC4200DDB182 /* NonGUI */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28AF18C2AC5E00DDB182 /* VWWBLEController.h */,
+				CFBE28B018C2AC5E00DDB182 /* VWWBLEController.m */,
+			);
+			name = NonGUI;
+			sourceTree = "<group>";
+		};
+		CFBE28B218C2ADA500DDB182 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,9 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFBE288318C2AB3900DDB182 /* ViewController.m in Sources */,
+				CFBE28B118C2AC5E00DDB182 /* VWWBLEController.m in Sources */,
 				CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */,
+				CFBE28AA18C2ABF000DDB182 /* VWWDefaultViewController.m in Sources */,
 				CFBE287918C2AB3900DDB182 /* main.m in Sources */,
+				CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
