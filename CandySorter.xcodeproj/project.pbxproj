@@ -43,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF10A25E18C3041700E22EB3 /* CandySorter_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.c; path = CandySorter_sketch.ino; sourceTree = "<group>"; };
+		CF10A25F18C3041700E22EB3 /* CandySorter_sketch.ino_servos */ = {isa = PBXFileReference; lastKnownFileType = text; path = CandySorter_sketch.ino_servos; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,9 +110,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF10A25D18C3041700E22EB3 /* CandySorter_sketch */ = {
+			isa = PBXGroup;
+			children = (
+				CF10A25E18C3041700E22EB3 /* CandySorter_sketch.ino */,
+				CF10A25F18C3041700E22EB3 /* CandySorter_sketch.ino_servos */,
+			);
+			path = CandySorter_sketch;
+			sourceTree = "<group>";
+		};
 		CFBE286018C2AB3900DDB182 = {
 			isa = PBXGroup;
 			children = (
+				CF10A25D18C3041700E22EB3 /* CandySorter_sketch */,
 				CFBE287218C2AB3900DDB182 /* CandySorter */,
 				CFBE289118C2AB3900DDB182 /* CandySorterTests */,
 				CFBE286B18C2AB3900DDB182 /* Frameworks */,
@@ -581,6 +593,7 @@
 				CFBE289D18C2AB3900DDB182 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CFBE289E18C2AB3900DDB182 /* Build configuration list for PBXNativeTarget "CandySorterTests" */ = {
 			isa = XCConfigurationList;
@@ -589,6 +602,7 @@
 				CFBE28A018C2AB3900DDB182 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

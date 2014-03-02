@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A3A0DEFF-1AF3-465D-B91F-36A478198747</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CandySorter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C82A9C24-D64D-49A9-8FFE-DB21D4618E4F</key>
+		<string>ssh://github.com/zakkhoyt/CandySorter</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CandySorter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C82A9C24-D64D-49A9-8FFE-DB21D4618E4F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/zakkhoyt/CandySorter</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C82A9C24-D64D-49A9-8FFE-DB21D4618E4F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C82A9C24-D64D-49A9-8FFE-DB21D4618E4F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CandySorter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
