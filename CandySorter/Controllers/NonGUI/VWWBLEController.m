@@ -47,10 +47,11 @@
 
 const u_int8_t kLoadCandyCommand = 0xB0;
 const u_int8_t kDropCandyCommand = 0xB1;
+const u_int8_t kIntializeServosCommand = 0xB2;
 
 const u_int8_t kCandyWasLoadedCommand = 0xC0;
 const u_int8_t kCandyWasDroppedCommand = 0xC1;
-
+const u_int8_t kServosDidInitializeCommand = 0xC2;
 
 
 
@@ -109,6 +110,11 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
     VWW_LOG_INFO(@"Start animating...");
 }
 
+-(void)initializeServos{
+    UInt8 buf[3] = {kIntializeServosCommand , 0x00, 0x00};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+}
 
 -(void)loadCandy{
     UInt8 buf[3] = {kLoadCandyCommand, 0x00, 0x00};
@@ -117,7 +123,7 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 
 }
 -(void)dropCandyInBin:(UInt8)bin{
-    UInt8 buf[3] = {0x01, 0x00, 0x00};
+    UInt8 buf[3] = {kDropCandyCommand, 0x00, 0x00};
     buf[1] = bin;
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [self.ble write:data];
@@ -153,6 +159,7 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 }
 -(void)bleDidDisconnect{
     VWW_LOG_TRACE;
+    [self.delegate bleControllerDidDisconnect:self];
 }
 -(void)bleDidUpdateRSSI:(NSNumber *)rssi{
     VWW_LOG_TRACE;
@@ -176,12 +183,33 @@ const u_int8_t kCandyWasDroppedCommand = 0xC1;
 //            if (data[i+2] == 0x01){
 //            } else {
 //            }
+            
+            if([self.delegate respondsToSelector:@selector(bleControllerDidLoadCandy:)]){
+                [self.delegate bleControllerDidLoadCandy:self];
+            } else {
+                VWW_LOG_WARNING(@"Delegate has not implemented selector: bleControllerDidLoadCandy");
+            }
+
+            
+            
+            
         } else if(data[i] == kCandyWasDroppedCommand){
             VWW_LOG_INFO(@"Candy was dropped");
-            [self.delegate bleControllerDidLoadCandy:self];
-        } else {
+            if([self.delegate respondsToSelector:@selector(bleControllerDidDropCandy:)]){
+                [self.delegate bleControllerDidDropCandy:self];
+            } else {
+                VWW_LOG_WARNING(@"Delegate has not implemented selector: bleControllerDidDropCandy");
+            }
+        } else if(data[i] == kServosDidInitializeCommand){
+            VWW_LOG_INFO(@"Servos are initialized");
+            if([self.delegate respondsToSelector:@selector(bleControllerServosDidInitialize:)]){
+                [self.delegate bleControllerServosDidInitialize:self];
+            } else {
+                VWW_LOG_WARNING(@"Delegate has not implemented selector: bleControllerServosDidInitialize");
+            }
+        }else {
             VWW_LOG_INFO(@"Received unknown command");
-            [self.delegate bleControllerDidDropCandy:self];
+
         }
     }
 }

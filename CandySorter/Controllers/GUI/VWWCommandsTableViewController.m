@@ -7,10 +7,8 @@
 //
 
 #import "VWWCommandsTableViewController.h"
-#import "VWWBLEController.h"
 
-@interface VWWCommandsTableViewController () <VWWBLEControllerDelegate>
-@property (nonatomic, strong) VWWBLEController *bleController;
+@interface VWWCommandsTableViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *autoPickSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
 
@@ -22,14 +20,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.bleController = [VWWBLEController sharedInstance];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBarHidden = NO;
-    self.bleController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning{
@@ -40,39 +34,33 @@
 #pragma mark IBActions
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
-
+    [self.delegate commandsTableViewControllerStartButtonTouchUpInside:self];
 }
 
 - (IBAction)stopButtonTouchUpInside:(id)sender {
-    
+    [self.delegate commandsTableViewControllerStopButtonTouchUpInside:self];
 }
 
 - (IBAction)loadButtonTouchUpInside:(id)sender {
-    [self.bleController loadCandy];
+    [self.delegate commandsTableViewControllerLoadButtonTouchUpInside:self];
 }
 
 - (IBAction)dropButtonTouchUpInside:(id)sender {
-    NSInteger bin = arc4random() % 12;
-    [self.bleController dropCandyInBin:bin];
+    [self.delegate commandsTableViewControllerDropButtonTouchUpInside:self];
 }
 
-- (IBAction)autoPickSwitchValueChanged:(id)sender {
-    
+- (IBAction)autoPickSwitchValueChanged:(UISwitch*)sender {
+    [self.delegate commandsTableViewController:self autoPickSwitchValueChanged:sender.on];
+}
+- (IBAction)initServosButtonTouchUpInside:(id)sender {
+    [self.delegate commandsTableViewControllerInitButtonTouchUpInside:self];
+//    [self.bleController initializeServos];
 }
 
-#pragma mark VWWBLEDelegate
--(void)bleControllerDidConnect:(VWWBLEController*)sender{
-    
+-(void)setRssi:(NSString *)rssi{
+    _rssi = rssi;
+    self.rssiLabel.text = rssi;
 }
--(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
-    VWW_LOG_WARNING(@"BLE Disconnected");
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
--(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi{
-    self.rssiLabel.text = rssi.stringValue;
-}
-
 
 
 @end

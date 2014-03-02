@@ -8,11 +8,12 @@
 
 #import "VWWDefaultViewController.h"
 #import "VWWBLEController.h"
-
+#import "MBProgressHUD.h"
 static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 @interface VWWDefaultViewController () <VWWBLEControllerDelegate>
 @property (nonatomic, strong) VWWBLEController *bleController;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @end
 
 @implementation VWWDefaultViewController
@@ -47,6 +48,10 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 #pragma mark IBActions
 - (IBAction)connectButtonTouchUpInside:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.connectButton.enabled = NO;
+    hud.dimBackground = YES;
+    hud.labelText = @"Connecting...";
     [self.bleController scanForPeripherals];
 }
 - (IBAction)scannerButtonTouchUpInside:(id)sender {
@@ -58,10 +63,13 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 #pragma mark VWWBLEControllerDelegate
 
 -(void)bleControllerDidConnect:(VWWBLEController*)sender{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
+    self.connectButton.enabled = YES;
 }
 -(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
-    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.connectButton.enabled = YES;
 }
 
 

@@ -23,19 +23,9 @@ static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
 static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
 static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
-@interface VWWScannerViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, VWWBLEControllerDelegate>
+@interface VWWScannerViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, VWWBLEControllerDelegate, VWWCommandsTableViewControllerDelegate>
 @property dispatch_queue_t avqueue;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
-@property (weak, nonatomic) IBOutlet UIView *colorContainerView;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIView *colorView;
-@property (weak, nonatomic) IBOutlet UILabel *hexLabel;
-@property (weak, nonatomic) IBOutlet UILabel *redLabel;
-@property (weak, nonatomic) IBOutlet UILabel *greenLabel;
-@property (weak, nonatomic) IBOutlet UILabel *blueLabel;
-
 @property (weak, nonatomic) IBOutlet VWWCrosshairView *crosshairView;
 
 @property (nonatomic, strong) VWWBLEController *bleController;
@@ -98,9 +88,9 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
 #pragma mark IBActions
 - (IBAction)cmdButtonTouchUpInside:(id)sender {
-//    [self performSegueWithIdentifier:VWWSegueScannerToCommands sender:self];
     if(self.commandsViewController == nil){
         self.commandsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VWWCommandsTableViewController"];
+        self.commandsViewController.delegate = self;
     }
     [self showChildViewController:self.commandsViewController];
     
@@ -156,33 +146,6 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 //    }];
 }
 
-
-
-
--(void)updateColor:(VWWColor*)color{
-    _colorView.backgroundColor = color.uiColor;
-    _nameLabel.text = color.name;
-    _redLabel.text = [NSString stringWithFormat:@"Red:%ld", (long)[color hexFromFloat:color.red]];
-    _greenLabel.text = [NSString stringWithFormat:@"Green:%ld", (long)[color hexFromFloat:color.green]];
-    _blueLabel.text = [NSString stringWithFormat:@"Blue:%ld", (long)[color hexFromFloat:color.blue]];
-    _hexLabel.text = [NSString stringWithFormat:@"%@", [color hexValue]];
-}
-
--(void)showColorView{
-    self.colorContainerView.hidden = NO;
-    self.colorContainerView.backgroundColor = self.view.backgroundColor;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.colorContainerView.alpha = 1.0;
-    }];
-}
-
--(void)hideColorView{
-    self.colorContainerView.hidden = YES;
-    self.colorContainerView.backgroundColor = self.view.backgroundColor;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.colorContainerView.alpha = 0.0;
-    }];
-}
 
 
 -(BOOL)isCameraAvailable{
@@ -354,7 +317,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     
     NSArray* pixels = [self getRGBAsFromImage:image atX:halfWidth andY:halfHeight count:1];
-    VWW_LOG(@"Getting pixel data:");
+//    VWW_LOG(@"Getting pixel data:");
     UIColor* uicolor = pixels[0];
     CGFloat red, green, blue, alpha = 0;
     [uicolor getRed:&red green:&green blue:&blue alpha:&alpha];
@@ -362,7 +325,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     
   
-    VWWColor *color = [[VWWColor alloc]initWithName:@"?" hex:@"" red:red*100 green:green*100 blue:blue*100 hue:0];
+//    VWWColor *color = [[VWWColor alloc]initWithName:@"?" hex:@"" red:red*100 green:green*100 blue:blue*100 hue:0];
 //    VWWColor *color = [[VWWColors sharedInstance]closestColorFromRed:red green:green blue:blue];
     
 //    VWW_Color* color = [self.colors colorFromRed:[NSNumber numberWithInt:red*100]
@@ -379,7 +342,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     
     dispatch_sync(dispatch_get_main_queue(), ^{
-        [self updateColor:color];
+//        [self updateColor:color];
 //        self.lblColorName.text = color.name;
 //        self.lblColorDetails.text = color.description;
 //        self.currentColorView.backgroundColor = color.color;
@@ -388,13 +351,52 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 
+
+#pragma mark VWWCommandsTableViewControllerDelegate
+
+-(void)commandsTableViewControllerStartButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    
+}
+-(void)commandsTableViewControllerStopButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    
+}
+-(void)commandsTableViewControllerLoadButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    [self.bleController loadCandy];
+}
+-(void)commandsTableViewControllerDropButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    NSInteger bin = arc4random() % 12;
+    [self.bleController dropCandyInBin:bin];
+
+}
+-(void)commandsTableViewControllerInitButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    
+}
+-(void)commandsTableViewController:(VWWCommandsTableViewController*)sender autoPickSwitchValueChanged:(BOOL)on{
+    
+}
+
+
+
+
 #pragma mark VWWBLEControllerDelegate
 
 -(void)bleControllerDidConnect:(VWWBLEController*)sender{
 //    [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
 }
+
 -(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
     [self stopCamera];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi{
+    self.commandsViewController.rssi = rssi.stringValue;
+}
+
+
+
+
+
+
+
 @end

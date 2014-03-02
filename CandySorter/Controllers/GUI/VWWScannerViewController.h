@@ -9,6 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface VWWScannerViewController : UIViewController
--(void)showColorView;
--(void)hideColorView;
 @end

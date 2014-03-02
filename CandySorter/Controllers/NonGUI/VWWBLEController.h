@@ -18,7 +18,7 @@
 
 // Now we are connected to the hardware and ready to start (Debug mode)
 //    * Tap load candy button. Command is sent to Arudino.
-//    * Arudino loads candy and sends reply
+//    * Arduio moves servo to load candy position, then inspect candy position then sends reply
 //    * Pixels are read and analyzed. A suggestion is highlighted in the tableview
 //    * Tap index in table if autoselect is not enabled
 //    * Arudino drops candy in the corresponding bin and sends reply
@@ -48,6 +48,7 @@
 -(void)bleControllerDidDisconnect:(VWWBLEController*)sender;
 @optional
 -(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi;
+-(void)bleControllerServosDidInitialize:(VWWBLEController*)sender;
 -(void)bleController:(VWWBLEController*)sender didLoadCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
 -(void)bleController:(VWWBLEController*)sender didDropCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
 -(void)bleControllerDidLoadCandy:(VWWBLEController*)sender;
@@ -59,6 +60,7 @@
 +(VWWBLEController*)sharedInstance;
 
 -(void)scanForPeripherals;
+-(void)initializeServos;
 -(void)loadCandy;
 -(void)dropCandyInBin:(UInt8)bin;
 

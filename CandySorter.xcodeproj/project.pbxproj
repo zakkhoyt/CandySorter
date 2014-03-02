@@ -12,6 +12,8 @@
 		CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */; };
 		CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */; };
 		CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428D18C31F2B006A1260 /* VWWScannerController.m */; };
+		CF7A7AC618C3E82600381A93 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7A7AC418C3E82600381A93 /* BLE.m */; };
+		CF7A7AD018C3E82F00381A93 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7A7ACE18C3E82F00381A93 /* MBProgressHUD.m */; };
 		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
 		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
@@ -25,7 +27,6 @@
 		CFBE288E18C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
 		CFBE289618C2AB3900DDB182 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFBE289418C2AB3900DDB182 /* InfoPlist.strings */; };
 		CFBE289818C2AB3900DDB182 /* CandySorterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE289718C2AB3900DDB182 /* CandySorterTests.m */; };
-		CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28A318C2AB8300DDB182 /* BLE.m */; };
 		CFBE28A718C2AB9A00DDB182 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */; };
 		CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B618C2B1DB00DDB182 /* VWWScannerViewController.m */; };
 		CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBE28B818C2B1DB00DDB182 /* VWWDefaultViewController.m */; };
@@ -60,6 +61,12 @@
 		CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinsTableViewController.m; sourceTree = "<group>"; };
 		CF5C428C18C31F2B006A1260 /* VWWScannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWScannerController.h; sourceTree = "<group>"; };
 		CF5C428D18C31F2B006A1260 /* VWWScannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWScannerController.m; sourceTree = "<group>"; };
+		CF7A7AC318C3E82600381A93 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		CF7A7AC418C3E82600381A93 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		CF7A7AC518C3E82600381A93 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		CF7A7ACD18C3E82F00381A93 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CF7A7ACE18C3E82F00381A93 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CF7A7AD218C3ECD100381A93 /* VWWBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWWBlocks.h; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -77,9 +84,6 @@
 		CFBE289318C2AB3900DDB182 /* CandySorterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CandySorterTests-Info.plist"; sourceTree = "<group>"; };
 		CFBE289518C2AB3900DDB182 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFBE289718C2AB3900DDB182 /* CandySorterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandySorterTests.m; sourceTree = "<group>"; };
-		CFBE28A218C2AB8300DDB182 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
-		CFBE28A318C2AB8300DDB182 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
-		CFBE28A418C2AB8300DDB182 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWUtilities.h; sourceTree = "<group>"; };
 		CFBE28B518C2B1DB00DDB182 /* VWWScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWScannerViewController.h; sourceTree = "<group>"; };
@@ -189,6 +193,42 @@
 			name = Details;
 			sourceTree = "<group>";
 		};
+		CF7A7AC218C3E82600381A93 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				CF7A7AC318C3E82600381A93 /* BLE.h */,
+				CF7A7AC418C3E82600381A93 /* BLE.m */,
+				CF7A7AC518C3E82600381A93 /* BLEDefines.h */,
+			);
+			name = BLE;
+			path = CandySorter/ThirdParty/BLE;
+			sourceTree = "<group>";
+		};
+		CF7A7AC718C3E82F00381A93 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				CF7A7ACC18C3E82F00381A93 /* MBProgressHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		CF7A7ACC18C3E82F00381A93 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CF7A7ACD18C3E82F00381A93 /* MBProgressHUD.h */,
+				CF7A7ACE18C3E82F00381A93 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		CF7A7AD118C3ECC500381A93 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				CF7A7AD218C3ECD100381A93 /* VWWBlocks.h */,
+			);
+			path = Include;
+			sourceTree = "<group>";
+		};
 		CFBE286018C2AB3900DDB182 = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +252,9 @@
 		CFBE286B18C2AB3900DDB182 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF7A7AC218C3E82600381A93 /* BLE */,
 				CFBE28CD18C2B28400DDB182 /* AVFoundation.framework */,
 				CFBE28A618C2AB9A00DDB182 /* CoreBluetooth.framework */,
-				CFBE28A118C2AB8300DDB182 /* BLE */,
 				CFBE286C18C2AB3900DDB182 /* Foundation.framework */,
 				CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */,
 				CFBE287018C2AB3900DDB182 /* UIKit.framework */,
@@ -230,6 +270,7 @@
 				CFBE288418C2AB3900DDB182 /* Images.xcassets */,
 				CFBE28C618C2B24700DDB182 /* Model */,
 				CFBE287318C2AB3900DDB182 /* Supporting Files */,
+				CF7A7AC718C3E82F00381A93 /* ThirdParty */,
 				CFBE28AC18C2AC0F00DDB182 /* UserInterface */,
 				CFBE28B218C2ADA500DDB182 /* Utilities */,
 				CFBE28BC18C2B1DB00DDB182 /* View */,
@@ -268,21 +309,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CFBE28A118C2AB8300DDB182 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				CFBE28A218C2AB8300DDB182 /* BLE.h */,
-				CFBE28A318C2AB8300DDB182 /* BLE.m */,
-				CFBE28A418C2AB8300DDB182 /* BLEDefines.h */,
-			);
-			name = BLE;
-			path = CandySorter/BLE;
-			sourceTree = "<group>";
-		};
 		CFBE28AB18C2AC0600DDB182 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CFBE28B418C2B1DB00DDB182 /* GUI */,
+				CF7A7AD118C3ECC500381A93 /* Include */,
 				CFBE28B918C2B1DB00DDB182 /* NonGUI */,
 			);
 			name = Controllers;
@@ -451,12 +482,13 @@
 				CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */,
 				CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */,
 				CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */,
+				CF7A7AC618C3E82600381A93 /* BLE.m in Sources */,
 				CFBE28C418C2B1DB00DDB182 /* VWWColorView.m in Sources */,
 				CFBE28C518C2B1DB00DDB182 /* VWWCrosshairView.m in Sources */,
+				CF7A7AD018C3E82F00381A93 /* MBProgressHUD.m in Sources */,
 				CFBE287D18C2AB3900DDB182 /* AppDelegate.m in Sources */,
 				CFBE28CC18C2B24700DDB182 /* VWWColors.m in Sources */,
 				CFBE287918C2AB3900DDB182 /* main.m in Sources */,
-				CFBE28A518C2AB8300DDB182 /* BLE.m in Sources */,
 				CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */,
 				CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */,
 				CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */,
