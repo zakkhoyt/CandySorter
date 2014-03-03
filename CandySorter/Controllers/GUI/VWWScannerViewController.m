@@ -18,12 +18,19 @@
 #import "VWWDetailsTableViewController.h"
 #import "VWWCommandsTableViewController.h"
 #import "VWWBinsTableViewController.h"
+#import "MBProgressHUD.h"
 
 static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
 static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
 static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
-@interface VWWScannerViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, VWWBLEControllerDelegate, VWWCommandsTableViewControllerDelegate>
+@interface VWWScannerViewController ()
+<AVCaptureVideoDataOutputSampleBufferDelegate,
+VWWBLEControllerDelegate,
+VWWCommandsTableViewControllerDelegate,
+VWWDetailsTableViewControllerDelegate,
+VWWBinsTableViewControllerDelegate>
+
 @property dispatch_queue_t avqueue;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (weak, nonatomic) IBOutlet VWWCrosshairView *crosshairView;
@@ -33,6 +40,10 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 @property (nonatomic, strong) VWWDetailsTableViewController *detailsViewController;
 @property (nonatomic, strong) VWWCommandsTableViewController *commandsViewController;
 @property (nonatomic, strong) VWWBinsTableViewController *binsViewController;
+@property (nonatomic) BOOL running;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
+
 @end
 
 @implementation VWWScannerViewController
@@ -49,6 +60,7 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarHidden = YES;
     self.avqueue = dispatch_queue_create("com.vaporwarewolf.colorblind", NULL);
     self.crosshairView.userInteractionEnabled = NO;
     self.bleController = [VWWBLEController sharedInstance];
@@ -85,22 +97,67 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 #pragma mark IBActions
 - (IBAction)cmdButtonTouchUpInside:(id)sender {
+    [self hideChildViewController:self.binsViewController];
+    [self hideChildViewController:self.detailsViewController];
+    
     if(self.commandsViewController == nil){
         self.commandsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VWWCommandsTableViewController"];
         self.commandsViewController.delegate = self;
+        self.commandsViewController.view.hidden = YES;
     }
-    [self showChildViewController:self.commandsViewController];
+    
+    if(self.commandsViewController.view.hidden == YES){
+        [self showChildViewController:self.commandsViewController];
+    } else {
+        [self hideChildViewController:self.commandsViewController];
+    }
     
 }
 
 - (IBAction)detailsButtonTouchUpInside:(id)sender {
-    [self performSegueWithIdentifier:VWWSegueScannerToDetails sender:self];
+
+    [self hideChildViewController:self.commandsViewController];
+    [self hideChildViewController:self.binsViewController];
+    
+    if(self.detailsViewController == nil){
+        self.detailsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VWWDetailsTableViewController"];
+        self.detailsViewController.delegate = self;
+        self.detailsViewController.view.hidden = YES;
+    }
+    
+    
+    
+    if(self.detailsViewController.view.hidden == YES){
+        [self showChildViewController:self.detailsViewController];
+    } else {
+        [self hideChildViewController:self.detailsViewController];
+    }
+
 }
 - (IBAction)binsButtonTouchUpInside:(id)sender {
-    [self performSegueWithIdentifier:VWWSegueScannerToBins sender:self];
+    [self hideChildViewController:self.commandsViewController];
+    [self hideChildViewController:self.detailsViewController];
+    
+    if(self.binsViewController == nil){
+        self.binsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VWWBinsTableViewController"];
+        self.binsViewController.delegate = self;
+        self.binsViewController.view.hidden = YES;
+    }
+    
+    
+    
+    if(self.binsViewController.view.hidden == YES){
+        [self showChildViewController:self.binsViewController];
+    } else {
+        [self hideChildViewController:self.binsViewController];
+    }
+
 }
 
 #pragma mark Private methods
@@ -108,9 +165,10 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 
 -(void)showChildViewController:(UIViewController*)vc{
     
+
     // Set view
     CGFloat w = 120;
-    CGFloat h = self.view.bounds.size.height;
+    CGFloat h = self.view.bounds.size.height - self.toolbar.bounds.size.height;
     CGFloat x = self.view.bounds.size.width - w;
     CGFloat y = 0;
     CGRect frameForView = CGRectMake(x, y, w, h);
@@ -126,24 +184,28 @@ static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
     [vc didMoveToParentViewController:self];
-    
+
+    vc.view.hidden = NO;
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 1.0;
     } completion:^(BOOL finished) {
-        
+
     }];
 }
 
--(void)dismissViewController{
+-(void)hideChildViewController:(UIViewController*)vc{
+
+    if(vc == nil) return;
+    if(vc.view.hidden == YES) return;
     
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.datePickerViewController.view.alpha = 0.0;
-//    } completion:^(BOOL finished) {
-//        self.datePickerViewController.view.hidden = YES;
-//        [self.datePickerViewController removeFromParentViewController];
-//        self.datePickerViewController = nil;
-//        
-//    }];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        vc.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        vc.view.hidden = YES;
+        [vc removeFromParentViewController];
+    }];
+    
 }
 
 
@@ -351,31 +413,87 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 
+-(void)processCandy{
+    
+    
+    while(self.running == YES){
+        
+        __block BOOL complete = NO;
+        [self.bleController loadCandyWithCompletionBlock:^{
+            VWW_LOG_INFO(@"Inspect candy color now");
+            complete = YES;
+        }];
+        while(complete == NO){
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        complete = NO;
+        
+        
+        NSInteger bin = arc4random() % 12;
+        [self.bleController dropCandyInBin:bin completionBlock:^{
+            complete = YES;
+        }];
+        while(complete == NO){
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        complete = NO;
+    }
+}
+
 
 #pragma mark VWWCommandsTableViewControllerDelegate
 
 -(void)commandsTableViewControllerStartButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
-    
+    self.running = YES;
+    [self processCandy];
 }
 -(void)commandsTableViewControllerStopButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
-    
+    self.running = NO;
 }
 -(void)commandsTableViewControllerLoadButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
-    [self.bleController loadCandy];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Loading candy";
+
+    [self.bleController loadCandyWithCompletionBlock:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 -(void)commandsTableViewControllerDropButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Dropping candy";
+
     NSInteger bin = arc4random() % 12;
-    [self.bleController dropCandyInBin:bin];
+    [self.bleController dropCandyInBin:bin completionBlock:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 
 }
 -(void)commandsTableViewControllerInitButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Init servos";
+    [self.bleController initializeServosWithCompletionBlock:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 -(void)commandsTableViewController:(VWWCommandsTableViewController*)sender autoPickSwitchValueChanged:(BOOL)on{
     
 }
 
 
+#pragma mark VWWBinsTableViewControllerDelegate
+-(void)binsTableViewController:(VWWBinsTableViewController*)sender didSelectRowAtIndex:(NSInteger)index{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"Dropping candy";
+    
+    [self.bleController dropCandyInBin:index completionBlock:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+}
 
 
 #pragma mark VWWBLEControllerDelegate

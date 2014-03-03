@@ -48,11 +48,6 @@
 -(void)bleControllerDidDisconnect:(VWWBLEController*)sender;
 @optional
 -(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi;
--(void)bleControllerServosDidInitialize:(VWWBLEController*)sender;
--(void)bleController:(VWWBLEController*)sender didLoadCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
--(void)bleController:(VWWBLEController*)sender didDropCandyWithParam1:(UInt8)param1 param2:(UInt8)param2;
--(void)bleControllerDidLoadCandy:(VWWBLEController*)sender;
--(void)bleControllerDidDropCandy:(VWWBLEController*)sender;
 @end
 
 
@@ -60,9 +55,9 @@
 +(VWWBLEController*)sharedInstance;
 
 -(void)scanForPeripherals;
--(void)initializeServos;
--(void)loadCandy;
--(void)dropCandyInBin:(UInt8)bin;
+-(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock;
+-(void)loadCandyWithCompletionBlock:(VWWEmptyBlock)completionBlock;
+-(void)dropCandyInBin:(UInt8)bin completionBlock:(VWWEmptyBlock)completionBlock;
 
 
 @property (nonatomic, weak) id <VWWBLEControllerDelegate> delegate;

@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface VWWDetailsTableViewController : UITableViewController
+@class VWWDetailsTableViewController;
 
+@protocol VWWDetailsTableViewControllerDelegate <NSObject>
+@optional
+-(void)detailsTableViewController:(VWWDetailsTableViewController*)sender;
+@end
+
+@interface VWWDetailsTableViewController : UITableViewController
+@property (nonatomic, weak) id <VWWDetailsTableViewControllerDelegate> delegate;
 @end

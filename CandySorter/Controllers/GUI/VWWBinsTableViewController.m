@@ -30,7 +30,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +58,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate binsTableViewController:self didSelectRowAtIndex:indexPath.row];
 }
 
 @end

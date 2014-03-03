@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VWWBinsTableViewController : UITableViewController
 
+@class VWWBinsTableViewController;
+
+@protocol VWWBinsTableViewControllerDelegate <NSObject>
+-(void)binsTableViewController:(VWWBinsTableViewController*)sender didSelectRowAtIndex:(NSInteger)index;
+@end
+
+@interface VWWBinsTableViewController : UITableViewController
+@property (nonatomic, weak) id <VWWBinsTableViewControllerDelegate> delegate;
 @end

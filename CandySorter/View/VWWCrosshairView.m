@@ -26,7 +26,7 @@
 - (void)drawRect:(CGRect)rect
 {
     
-    const int kCrosshairLength = 50;
+    const int kCrosshairLength = 16;
     
     CGContextRef c = UIGraphicsGetCurrentContext();
 

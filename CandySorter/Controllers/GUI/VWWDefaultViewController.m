@@ -30,6 +30,8 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
     self.bleController = [VWWBLEController sharedInstance];
     
 }
@@ -43,6 +45,10 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 
