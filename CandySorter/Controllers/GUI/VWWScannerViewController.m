@@ -428,6 +428,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         }
         complete = NO;
         
+        usleep(500 * 1000);
+        
         
         NSInteger bin = arc4random() % 12;
         [self.bleController dropCandyInBin:bin completionBlock:^{

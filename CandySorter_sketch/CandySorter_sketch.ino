@@ -66,10 +66,7 @@ void loop() {
 #if defined(VWW_ENABLE_BLE)
     // If data is ready
     while(ble_available())
-    {
-        // Indicate that we are ready
-        digitalWrite(kLEDPin, HIGH);
-        
+    {   
         // read out command and data
         byte data0 = ble_read();
         byte data1 = ble_read();
@@ -117,12 +114,11 @@ void loop() {
         }
     }
     
-    if (!ble_connected())
-    {
+    // Set status LED to on if connected
+    if (ble_connected()) {
+      digitalWrite(kLEDPin, HIGH);
+    } else {
       digitalWrite(kLEDPin, LOW);
-//        analog_enabled = false;
-//        digitalWrite(DIGITAL_OUT_PIN, LOW);
-  
     }
     
     // Allow BLE Shield to send/receive data
