@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */; };
 		CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */; };
+		CF53AEB718C57530009F868B /* VWWUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = CF53AEB618C57530009F868B /* VWWUserDefaults.m */; };
+		CF53AEBA18C58045009F868B /* VWWTrimsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF53AEB918C58045009F868B /* VWWTrimsTableViewController.m */; };
 		CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */; };
 		CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428718C318AC006A1260 /* VWWBinsTableViewController.m */; };
 		CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428D18C31F2B006A1260 /* VWWScannerController.m */; };
@@ -55,6 +57,10 @@
 		CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWCommandsTableViewController.m; sourceTree = "<group>"; };
 		CF10A26318C30E1300E22EB3 /* VWWDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWDetailsTableViewController.h; sourceTree = "<group>"; };
 		CF10A26418C30E1300E22EB3 /* VWWDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWDetailsTableViewController.m; sourceTree = "<group>"; };
+		CF53AEB518C57530009F868B /* VWWUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWUserDefaults.h; sourceTree = "<group>"; };
+		CF53AEB618C57530009F868B /* VWWUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWUserDefaults.m; sourceTree = "<group>"; };
+		CF53AEB818C58045009F868B /* VWWTrimsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWTrimsTableViewController.h; sourceTree = "<group>"; };
+		CF53AEB918C58045009F868B /* VWWTrimsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWTrimsTableViewController.m; sourceTree = "<group>"; };
 		CF5C428218C316C7006A1260 /* VWWBinTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBinTableViewCell.h; sourceTree = "<group>"; };
 		CF5C428318C316C7006A1260 /* VWWBinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBinTableViewCell.m; sourceTree = "<group>"; };
 		CF5C428618C318AC006A1260 /* VWWBinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBinsTableViewController.h; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 			children = (
 				CF10A26018C30BB900E22EB3 /* VWWCommandsTableViewController.h */,
 				CF10A26118C30BB900E22EB3 /* VWWCommandsTableViewController.m */,
+				CF53AEB818C58045009F868B /* VWWTrimsTableViewController.h */,
+				CF53AEB918C58045009F868B /* VWWTrimsTableViewController.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -331,6 +339,8 @@
 			isa = PBXGroup;
 			children = (
 				CFBE28B318C2ADA500DDB182 /* VWWUtilities.h */,
+				CF53AEB518C57530009F868B /* VWWUserDefaults.h */,
+				CF53AEB618C57530009F868B /* VWWUserDefaults.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -479,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF53AEBA18C58045009F868B /* VWWTrimsTableViewController.m in Sources */,
 				CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */,
 				CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */,
 				CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */,
@@ -492,6 +503,7 @@
 				CFBE28CB18C2B24700DDB182 /* VWWColor.m in Sources */,
 				CFBE28C318C2B1DB00DDB182 /* VWWBLEController.m in Sources */,
 				CF10A26218C30BB900E22EB3 /* VWWCommandsTableViewController.m in Sources */,
+				CF53AEB718C57530009F868B /* VWWUserDefaults.m in Sources */,
 				CF10A26518C30E1300E22EB3 /* VWWDetailsTableViewController.m in Sources */,
 				CFBE28C218C2B1DB00DDB182 /* VWWDefaultViewController.m in Sources */,
 				CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */,

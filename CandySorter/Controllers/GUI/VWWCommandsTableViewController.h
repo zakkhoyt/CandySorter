@@ -17,6 +17,7 @@
 -(void)commandsTableViewControllerLoadButtonTouchUpInside:(VWWCommandsTableViewController*)sender;
 -(void)commandsTableViewControllerDropButtonTouchUpInside:(VWWCommandsTableViewController*)sender;
 -(void)commandsTableViewControllerInitButtonTouchUpInside:(VWWCommandsTableViewController*)sender;
+-(void)commandsTableViewControllerTrimsButtonTouchUpInside:(VWWCommandsTableViewController*)sender;
 -(void)commandsTableViewController:(VWWCommandsTableViewController*)sender autoPickSwitchValueChanged:(BOOL)on;
 @end
 

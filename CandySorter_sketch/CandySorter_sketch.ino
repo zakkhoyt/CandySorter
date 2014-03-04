@@ -18,9 +18,22 @@
 const unsigned int kLoadCandyCommand = 0xB0;
 const unsigned int kDropCandyCommand = 0xB1;
 const unsigned int kIntializeServosCommand = 0xB2;
+const unsigned int kSetLoadPositionCommand = 0xB3;
+const unsigned int kSetInspectPositionCommand = 0xB4;
+const unsigned int kSetDropCandyPositionCommand = 0xB5;
+const unsigned int kSetDispenseMinPositionCommand = 0xB6;
+const unsigned int kSetDispenseMaxPositionCommand = 0xB7;
+const unsigned int kSetDispenseNumChoicesCommand = 0xB8;
+
 const unsigned int kCandyWasLoadedCommand = 0xC0;
 const unsigned int kCandyWasDroppedCommand = 0xC1;
 const unsigned int kServosDidInitializeCommand = 0xC2;
+const unsigned int kLoadPositionWasSetCommand = 0xC3;
+const unsigned int inspectPositionWasSetCommand = 0xC4;
+const unsigned int kDropCandyPositionWasSetCommand = 0xC5;
+const unsigned int kDispenseMinPositionWasSetCommand = 0xC6;
+const unsigned int kDispenseMaxPositionWasSetCommand = 0xC7;
+const unsigned int kDispenseNumChoicesWasSetCommand = 0xC8;
 
 // I/O pins
 const unsigned int kLEDPin = 4;
@@ -28,12 +41,12 @@ const unsigned int kLoadServoPin = 5;
 const unsigned int kDropServoPin = 6;
 
 // Servo positions
-const unsigned int kPickupPosition = 160;
-const unsigned int kInspectPosition = 90;
-const unsigned int kDropPosition = 20;
-const unsigned int kMinPosition = 20;
-const unsigned int kMaxPosition = 160;
-const unsigned int kNumChoices = 12;
+unsigned int loadPosition = 160;
+unsigned int inspectPosition = 90;
+unsigned int dropPosition = 20;
+unsigned int dispenseMinPosition = 20;
+unsigned int dispenseMaxPosition = 160;
+unsigned int dispenseNumChoices = 12;
 
 // Servos
 Servo loadServo;
@@ -90,11 +103,11 @@ void loop() {
             
             // Drop candy in indicated bin
             dropCandy();
-            dispenseCandy(data1, 12);
+            dispenseCandy(data1, dispenseNumChoices);
             delay(200);
             
             
-            // Send loaded reply
+            // Send reply
             ble_write(kCandyWasDroppedCommand);
             ble_write(0x00);
             ble_write(0x00);
@@ -104,9 +117,79 @@ void loop() {
                         
             initServos();
             
-            // Send loaded reply
+            // Send reply
             ble_write(kServosDidInitializeCommand);
             ble_write(0x00);
+            ble_write(0x00);
+            
+        } else if (data0 == kSetLoadPositionCommand){
+            Serial.println("Recieved set load position command");
+            
+            loadPosition = data1;
+            loadCandy();
+            
+            
+            // Send reply
+            ble_write(kLoadPositionWasSetCommand);
+            ble_write(loadPosition);
+            ble_write(0x00);
+        } else if (data0 == kSetInspectPositionCommand){
+            Serial.println("Recieved set inspect position command");
+            
+            inspectPosition = data1;
+            inspectCandy();
+            
+            // Send reply
+            ble_write(inspectPositionWasSetCommand);
+            ble_write(inspectPosition);
+            ble_write(0x00);
+            
+        } else if (data0 == kSetDropCandyPositionCommand){
+            Serial.println("Recieved set drop position command.");
+            
+            dropPosition = data1;
+            dropCandy();
+            
+            // Send reply
+            ble_write(kDropCandyPositionWasSetCommand);
+            ble_write(dropPosition);
+            ble_write(0x00);
+            
+        } else if (data0 == kSetDispenseMinPositionCommand){
+            Serial.println("Recieved set dispense min position command.");
+            
+            dispenseMinPosition = data1;
+            dispenseCandy(0, dispenseNumChoices);
+            
+            // Send reply
+            ble_write(kDispenseMinPositionWasSetCommand);
+            ble_write(dispenseMinPosition);
+            ble_write(0x00);
+            
+        } else if (data0 == kSetDispenseMaxPositionCommand){
+            Serial.println("Recieved set dispense max position command.");
+            
+            dispenseMaxPosition = data1;
+            dispenseCandy(dispenseNumChoices - 1, dispenseNumChoices);
+            
+            // Send reply
+            ble_write(kDispenseMaxPositionWasSetCommand);
+            ble_write(dispenseMaxPosition);
+            ble_write(0x00);
+            
+        } else if (data0 == kSetDispenseNumChoicesCommand){
+            Serial.println("Recieved set dispense num choices command");
+            
+            dispenseNumChoices = data1;
+            
+            for(unsigned int x = 0; x < dispenseNumChoices; x++){
+                dispenseCandy(x, dispenseNumChoices);
+                delay(200);
+            }
+            
+            // Send reply
+            ble_write(kDispenseNumChoicesWasSetCommand);
+            ble_write(dispenseNumChoices);
             ble_write(0x00);
             
         } else {
@@ -131,24 +214,24 @@ void loop() {
 void loadCandy(){
     Serial.println("Loading candy position");
     
-    loadServo.write(kPickupPosition); 
+    loadServo.write(loadPosition); 
 }
 
 void inspectCandy(){
     Serial.println("Inspect candy position");
-    loadServo.write(kInspectPosition); 
+    loadServo.write(inspectPosition); 
 }
 
 void dropCandy(){
     Serial.println("Drop candy position");
-    loadServo.write(kDropPosition);  
+    loadServo.write(dropPosition);  
 }
 
 void dispenseCandy(unsigned int pos, unsigned int totalPositions){
-    //    unsigned int p = map(pos, 0, 1023, kMinPosition, kMaxPosition);
-    unsigned int total = kMaxPosition - kMinPosition;
-    float perStep = total / (kNumChoices - 1);
-    unsigned int p = kMinPosition + perStep * pos;
+    //    unsigned int p = map(pos, 0, 1023, dispenseMinPosition, dispenseMaxPosition);
+    unsigned int total = dispenseMaxPosition - dispenseMinPosition;
+    float perStep = total / (dispenseNumChoices - 1);
+    unsigned int p = dispenseMinPosition + perStep * pos;
     
     char *s = (char*)malloc(16 * sizeof(char));
     sprintf(s, "Pos: %u:%u", pos, p);
@@ -175,14 +258,13 @@ void initServos(){
     inspectCandy();
     delay(200);
     
-    for(unsigned int x = 0; x < 12; x++){
-      dispenseCandy(x, 12);
+    for(unsigned int x = 0; x < dispenseNumChoices; x++){
+      dispenseCandy(x, dispenseNumChoices);
       delay(200);
     }
-    for(int x = 10; x > -1; x--){
-      dispenseCandy(x, 12);
+    for(int x = dispenseNumChoices - 2; x > -1; x--){
+      dispenseCandy(x, dispenseNumChoices);
       delay(200);
     }
-//    dispenseCandy(0, 12);
 }
 

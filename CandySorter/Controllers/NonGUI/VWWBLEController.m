@@ -1,5 +1,6 @@
 //
 //  VWWBLEController.m
+
 //  CandySorter
 //
 //  Created by Zakk Hoyt on 3/1/14.
@@ -45,14 +46,28 @@
 //    }
 //}
 
-const u_int8_t kLoadCandyCommand = 0xB0;
-const u_int8_t kDropCandyCommand = 0xB1;
-const u_int8_t kIntializeServosCommand = 0xB2;
 
-const u_int8_t kCandyWasLoadedCommand = 0xC0;
-const u_int8_t kCandyWasDroppedCommand = 0xC1;
-const u_int8_t kServosDidInitializeCommand = 0xC2;
 
+
+const UInt8 kLoadCandyCommand = 0xB0;
+const UInt8 kDropCandyCommand = 0xB1;
+const UInt8 kIntializeServosCommand = 0xB2;
+const UInt8 kSetLoadPositionCommand = 0xB3;
+const UInt8 kSetInspectPositionCommand = 0xB4;
+const UInt8 kSetDropCandyPositionCommand = 0xB5;
+const UInt8 kSetDispenseMinPositionCommand = 0xB6;
+const UInt8 kSetDispenseMaxPositionCommand = 0xB7;
+const UInt8 kSetDispenseNumChoicesCommand = 0xB8;
+
+const UInt8 kCandyWasLoadedCommand = 0xC0;
+const UInt8 kCandyWasDroppedCommand = 0xC1;
+const UInt8 kServosDidInitializeCommand = 0xC2;
+const UInt8 kLoadPositionWasSetCommand = 0xC3;
+const UInt8 kInspectPositionWasSetCommand = 0xC4;
+const UInt8 kDropCandyPositionWasSetCommand = 0xC5;
+const UInt8 kDispenseMinPositionWasSetCommand = 0xC6;
+const UInt8 kDispenseMaxPositionWasSetCommand = 0xC7;
+const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
 
 
 
@@ -62,7 +77,21 @@ const u_int8_t kServosDidInitializeCommand = 0xC2;
 @property (nonatomic, strong) VWWEmptyBlock loadCandyCompletionBlock;
 @property (nonatomic, strong) VWWEmptyBlock dropCandyCompletionBlock;
 @property (nonatomic, strong) VWWEmptyBlock initServosCompletionBlock;
+
+@property (nonatomic, strong) VWWEmptyBlock setLoadPositionCompletionBlock;
+@property (nonatomic, strong) VWWEmptyBlock setInspectPositionCompletionBlock;
+@property (nonatomic, strong) VWWEmptyBlock setDropPositionCompletionBlock;
+@property (nonatomic, strong) VWWEmptyBlock setDispenseMinPositionCompletionBlock;
+@property (nonatomic, strong) VWWEmptyBlock setDispenseMaxPositionCompletionBlock;
+@property (nonatomic, strong) VWWEmptyBlock setDispenseNumChoicesCompletionBlock;
+
+
 @property (nonatomic, strong) NSTimer *rssiTimer;
+@property (nonatomic) NSInteger *loadPosition;
+@property (nonatomic) NSInteger *inspectPosition;
+@property (nonatomic) NSInteger *dropPosition;
+@property (nonatomic) NSInteger *dispenseMinPosition;
+@property (nonatomic) NSInteger *dispenseMaxPosition;
 @end
 
 @implementation VWWBLEController
@@ -137,7 +166,54 @@ const u_int8_t kServosDidInitializeCommand = 0xC2;
     [self.ble write:data];
 }
 
+-(void)setLoadPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setLoadPositionCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetLoadPositionCommand, 0x00, 0x00};
+    buf[1] = position;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
 
+}
+-(void)setInspectPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setInspectPositionCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetInspectPositionCommand, 0x00, 0x00};
+    buf[1] = position;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+    
+}
+-(void)setDropPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setDropPositionCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetDropCandyPositionCommand, 0x00, 0x00};
+    buf[1] = position;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+    
+}
+-(void)setDispenseMinPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setDispenseMinPositionCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetDispenseMinPositionCommand, 0x00, 0x00};
+    buf[1] = position;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+    
+}
+-(void)setDispenseMaxPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setDispenseMaxPositionCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetDispenseMaxPositionCommand, 0x00, 0x00};
+    buf[1] = position;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+    
+}
+
+-(void)setDispenseNumChoices:(UInt8)numChoices completionBlock:(VWWEmptyBlock)completionBlock{
+    self.setDispenseNumChoicesCompletionBlock = completionBlock;
+    UInt8 buf[3] = {kSetDispenseNumChoicesCommand, 0x00, 0x00};
+    buf[1] = numChoices;
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [self.ble write:data];
+}
 
 #pragma mark Private methods
 
@@ -187,20 +263,13 @@ const u_int8_t kServosDidInitializeCommand = 0xC2;
 -(void)bleDidReceiveData:(unsigned char *)data length:(int)length{
     VWW_LOG_INFO(@"Length: %d", length);
     
-    // parse data, all commands are in 3-byte
-    for (int i = 0; i < length; i+=3){
-        VWW_LOG_INFO(@"0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
-
-        //            // Parse param1
-        //            if (data[i+1] == 0x01){
-        //            } else {
-        //            }
-        
-        //            // Parse param2
-        //            if (data[i+2] == 0x01){
-        //            } else {
-        //            }
-
+    if(length != 3){
+        VWW_LOG_WARNING(@"Expected data of length 3. Got %ld", (long)length);
+    }
+    
+    // parse data, all commands are in 3-byte. See header of commands.
+//    for (int i = 0; i < length; i+=3){
+    NSUInteger i = 0;
         if(data[i] == kCandyWasLoadedCommand){
             VWW_LOG_INFO(@"Candy was loaded");
             if(self.loadCandyCompletionBlock){
@@ -216,11 +285,46 @@ const u_int8_t kServosDidInitializeCommand = 0xC2;
             if(self.initServosCompletionBlock){
                 self.initServosCompletionBlock();
             }
+        } else if(data[i] == kLoadPositionWasSetCommand){
+            UInt8 position = data[i+1];
+            VWW_LOG_INFO(@"Load postition was set: 0x%02X", position);
+            if(self.setLoadPositionCompletionBlock){
+                self.setLoadPositionCompletionBlock();
+            }
+        } else if(data[i] == kInspectPositionWasSetCommand){
+            UInt8 position = data[i+1];
+            VWW_LOG_INFO(@"Inspect position was set: 0x%02X", position);
+            if(self.setInspectPositionCompletionBlock){
+                self.setInspectPositionCompletionBlock();
+            }
+        } else if(data[i] == kDropCandyPositionWasSetCommand){
+            UInt8 position = data[i+1];
+            VWW_LOG_INFO(@"Drop position was set: 0x%02X", position);
+            if(self.setDropPositionCompletionBlock){
+                self.setDropPositionCompletionBlock();
+            }
+        } else if(data[i] == kDispenseMinPositionWasSetCommand){
+            UInt8 position = data[i+1];
+            VWW_LOG_INFO(@"Dispense min position was set: 0x%02X", position);
+            if(self.setDispenseMinPositionCompletionBlock){
+                self.setDispenseMinPositionCompletionBlock();
+            }
+        } else if(data[i] == kDispenseMaxPositionWasSetCommand){
+            UInt8 position = data[i+1];
+            VWW_LOG_INFO(@"Dispense max position was set: 0x%02X", position);
+            if(self.setDispenseMaxPositionCompletionBlock){
+                self.setDispenseMaxPositionCompletionBlock();
+            }
+        } else if(data[i] == kDispenseNumChoicesWasSetCommand){
+            UInt8 numChoices = data[i+1];
+            VWW_LOG_INFO(@"Dispense num choices was set: 0x%02X", numChoices);
+            if(self.setDispenseNumChoicesCompletionBlock){
+                self.setDispenseNumChoicesCompletionBlock();
+            }
         } else {
-            VWW_LOG_INFO(@"Received unknown command");
-
+            VWW_LOG_INFO(@"Received unknown command: 0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
         }
-    }
+//    }
 }
 
 

@@ -56,6 +56,9 @@
     [self.delegate commandsTableViewControllerInitButtonTouchUpInside:self];
 //    [self.bleController initializeServos];
 }
+- (IBAction)trimsButtonTouchUpInside:(id)sender {
+    
+}
 
 -(void)setRssi:(NSString *)rssi{
     _rssi = rssi;

@@ -23,6 +23,8 @@
 static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
 static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
 static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
+static NSString *VWWSegueScannerToTrims = @"VWWSegueScannerToTrims";
+
 
 @interface VWWScannerViewController ()
 <AVCaptureVideoDataOutputSampleBufferDelegate,
@@ -480,10 +482,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
+
+-(void)commandsTableViewControllerTrimsButtonTouchUpInside:(VWWCommandsTableViewController*)sender{
+    [self performSegueWithIdentifier:VWWSegueScannerToTrims sender:self];
+}
 -(void)commandsTableViewController:(VWWCommandsTableViewController*)sender autoPickSwitchValueChanged:(BOOL)on{
     
 }
-
 
 #pragma mark VWWBinsTableViewControllerDelegate
 -(void)binsTableViewController:(VWWBinsTableViewController*)sender didSelectRowAtIndex:(NSInteger)index{

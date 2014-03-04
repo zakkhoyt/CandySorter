@@ -59,6 +59,49 @@
 -(void)loadCandyWithCompletionBlock:(VWWEmptyBlock)completionBlock;
 -(void)dropCandyInBin:(UInt8)bin completionBlock:(VWWEmptyBlock)completionBlock;
 
+-(void)setLoadPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
+-(void)setInspectPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
+-(void)setDropPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
+-(void)setDispenseMinPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
+-(void)setDispenseMaxPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
+-(void)setDispenseNumChoices:(UInt8)numChoices completionBlock:(VWWEmptyBlock)completionBlock;
+
+
+
 
 @property (nonatomic, weak) id <VWWBLEControllerDelegate> delegate;
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
