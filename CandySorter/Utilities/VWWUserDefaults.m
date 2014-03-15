@@ -16,60 +16,60 @@ static NSString *VWWUserDefaultsDispenseNumChoicesKey = @"dispenseNumChoices";
 
 @implementation VWWUserDefaults
 
-+(void)setLoadPosition:(NSNumber*)position{
-    [[NSUserDefaults standardUserDefaults] setObject:position forKey:VWWUserDefaultsLoadPositionKey];
++(void)setLoadPosition:(NSUInteger)position{
+    [[NSUserDefaults standardUserDefaults] setObject:@(position) forKey:VWWUserDefaultsLoadPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(NSNumber*)loadPosition{
++(NSUInteger)loadPosition{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsLoadPositionKey];
-    return position == nil ? @(160) : position;
+    return position == nil ? 160 : position.unsignedIntegerValue;
 }
 
 
-+(void)setInspectPosition:(NSNumber*)position{
-    [[NSUserDefaults standardUserDefaults] setObject:position forKey:VWWUserDefaultsInspectPositionKey];
++(void)setInspectPosition:(NSUInteger)position{
+    [[NSUserDefaults standardUserDefaults] setObject:@(position) forKey:VWWUserDefaultsInspectPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSNumber*)inspectPosition{
++(NSUInteger)inspectPosition{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsInspectPositionKey];
-    return position == nil ? @(90) : position;
+    return position == nil ? 90 : position.unsignedIntegerValue;
 }
 
-+(void)setDropPosition:(NSNumber*)position{
-    [[NSUserDefaults standardUserDefaults] setObject:position forKey:VWWUserDefaultsDropPositionKey];
++(void)setDropPosition:(NSUInteger)position{
+    [[NSUserDefaults standardUserDefaults] setObject:@(position) forKey:VWWUserDefaultsDropPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSNumber*)dropPosition{
++(NSUInteger)dropPosition{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsDropPositionKey];
-    return position == nil ? @(20) : position;
+    return position == nil ? 20 : position.unsignedIntegerValue;
 }
 
-+(void)setDispenseMinPosition:(NSNumber*)position{
-    [[NSUserDefaults standardUserDefaults] setObject:position forKey:VWWUserDefaultsDispenseMinPositionKey];
++(void)setDispenseMinPosition:(NSUInteger)position{
+    [[NSUserDefaults standardUserDefaults] setObject:@(position) forKey:VWWUserDefaultsDispenseMinPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSNumber*)dispenseMinPosition{
++(NSUInteger)dispenseMinPosition{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsDispenseMinPositionKey];
-    return position == nil ? @(20) : position;
+    return position == nil ? 20 : position.unsignedIntegerValue;
 }
 
-+(void)setDispenseMaxPosition:(NSNumber*)position{
-    [[NSUserDefaults standardUserDefaults] setObject:position forKey:VWWUserDefaultsDispenseMaxPositionKey];
++(void)setDispenseMaxPosition:(NSUInteger)position{
+    [[NSUserDefaults standardUserDefaults] setObject:@(position) forKey:VWWUserDefaultsDispenseMaxPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSNumber*)dispenseMaxPosition{
++(NSUInteger)dispenseMaxPosition{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsDispenseMaxPositionKey];
-    return position == nil ? @(160) : position;
+    return position == nil ? 160 : position.unsignedIntegerValue;
 }
 
-+(void)setDispenseNumChoices:(NSNumber*)numChoices{
-    [[NSUserDefaults standardUserDefaults] setObject:numChoices forKey:VWWUserDefaultsDispenseNumChoicesKey];
++(void)setDispenseNumChoices:(NSUInteger)numChoices{
+    [[NSUserDefaults standardUserDefaults] setObject:@(numChoices) forKey:VWWUserDefaultsDispenseNumChoicesKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSNumber*)dispenseNumChoices{
++(NSUInteger)dispenseNumChoices{
     NSNumber *position = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsDispenseNumChoicesKey];
-    return position == nil ? @(12) : position;
+    return position == nil ? 12 : position.unsignedIntegerValue;
 }
 
 @end

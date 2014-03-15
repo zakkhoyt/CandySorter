@@ -15,6 +15,7 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 @interface VWWDefaultViewController () <VWWBLEControllerDelegate>
 @property (nonatomic, strong) VWWBLEController *bleController;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation VWWDefaultViewController
@@ -57,70 +58,54 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 // Configure with servo positions
 -(void)configureArduinoWithCompletionBlock:(VWWEmptyBlock)completionBlock{
-    __block BOOL complete = NO;
     
-    NSNumber *loadPositionNumber = [VWWUserDefaults loadPosition];
-    UInt8 loadPosition = loadPositionNumber.integerValue;
+
+    // This is a hoaky way to get around synchronously calling asynchronous blocks
+    // However CoreData seems to only want to run on the main thread making
+    // dispatch_semaphore and NSRunLoop polling tend to freeze the GUI.
+    // Since these calls return fairly quickly, we'll just sleep between each call.
+    // This is not a typical way to accomplish this in iOS programming.
+    UInt8 loadPosition = [VWWUserDefaults loadPosition];
     [self.bleController setLoadPosition:loadPosition completionBlock:^{
-        complete = YES;
+
     }];
     
-    while(complete == NO){
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    complete = NO;
-    
-    NSNumber *inspectPositionNumber = [VWWUserDefaults inspectPosition];
-    UInt8 inspectPosition = inspectPositionNumber.integerValue;
+    [NSThread sleepForTimeInterval:1.0];
+
+    UInt8 inspectPosition = [VWWUserDefaults inspectPosition];
     [self.bleController setInspectPosition:inspectPosition completionBlock:^{
-        complete = YES;
+
     }];
     
-    while(complete == NO){
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    complete = NO;
+    [NSThread sleepForTimeInterval:1.0];
 
-    NSNumber *dropPositionNumber = [VWWUserDefaults dropPosition];
-    UInt8 dropPosition = dropPositionNumber.integerValue;
+    UInt8 dropPosition = [VWWUserDefaults dropPosition];
     [self.bleController setDropPosition:dropPosition completionBlock:^{
-        complete = YES;
+    
     }];
     
-    while(complete == NO){
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    complete = NO;
-
+    [NSThread sleepForTimeInterval:1.0];
     
-    NSNumber *dispenseMinPositionNumber = [VWWUserDefaults dispenseMinPosition];
-    UInt8 dispenseMinPosision = dispenseMinPositionNumber.integerValue;
+    UInt8 dispenseMinPosision = [VWWUserDefaults dispenseMinPosition];
     [self.bleController setDispenseMinPosition:dispenseMinPosision completionBlock:^{
-        complete = YES;
+    
     }];
     
-    while(complete == NO){
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    complete = NO;
+    [NSThread sleepForTimeInterval:1.0];
     
-    NSNumber *dispenseMaxPositionNumber = [VWWUserDefaults dispenseMaxPosition];
-    UInt8 dispenseMaxPosision = dispenseMaxPositionNumber.integerValue;
+    UInt8 dispenseMaxPosision = [VWWUserDefaults dispenseMaxPosition];
     [self.bleController setDispenseMaxPosition:dispenseMaxPosision completionBlock:^{
-        complete = YES;
+    
     }];
     
-    while(complete == NO){
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    complete = NO;
-
+    [NSThread sleepForTimeInterval:1.0];
     
-    NSNumber *dispenseNumChoicesNumber = [VWWUserDefaults dispenseNumChoices];
-    UInt8 dispenseNumChoices = dispenseNumChoicesNumber.integerValue;
+    UInt8 dispenseNumChoices = [VWWUserDefaults dispenseNumChoices];
     [self.bleController setDispenseNumChoices:dispenseNumChoices completionBlock:^{
-        complete = YES;
+    
     }];
+    
+    [NSThread sleepForTimeInterval:3.0];
     
     completionBlock();
     
@@ -129,10 +114,10 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 #pragma mark IBActions
 - (IBAction)connectButtonTouchUpInside:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.connectButton.enabled = NO;
-    hud.dimBackground = YES;
-    hud.labelText = @"Connecting...";
+    self.hud.dimBackground = YES;
+    self.hud.labelText = @"Connecting...";
     [self.bleController scanForPeripherals];
 }
 - (IBAction)scannerButtonTouchUpInside:(id)sender {
@@ -144,6 +129,7 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 #pragma mark VWWBLEControllerDelegate
 
 -(void)bleControllerDidConnect:(VWWBLEController*)sender{
+    self.hud.detailsLabelText = @"Initializing...";
     [self configureArduinoWithCompletionBlock:^{
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
@@ -153,6 +139,10 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 -(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     self.connectButton.enabled = YES;
+}
+
+-(void)bleController:(VWWBLEController *)sender didUpdateRSSI:(NSNumber *)rssi{
+    
 }
 
 

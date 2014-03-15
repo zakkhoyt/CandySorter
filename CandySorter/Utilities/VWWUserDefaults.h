@@ -10,22 +10,22 @@
 
 @interface VWWUserDefaults : NSObject
 
-+(void)setLoadPosition:(NSNumber*)position;
-+(NSNumber*)loadPosition;
++(void)setLoadPosition:(NSUInteger)position;
++(NSUInteger)loadPosition;
 
-+(void)setInspectPosition:(NSNumber*)position;
-+(NSNumber*)inspectPosition;
++(void)setInspectPosition:(NSUInteger)position;
++(NSUInteger)inspectPosition;
 
-+(void)setDropPosition:(NSNumber*)position;
-+(NSNumber*)dropPosition;
++(void)setDropPosition:(NSUInteger)position;
++(NSUInteger)dropPosition;
 
-+(void)setDispenseMinPosition:(NSNumber*)position;
-+(NSNumber*)dispenseMinPosition;
++(void)setDispenseMinPosition:(NSUInteger)position;
++(NSUInteger)dispenseMinPosition;
 
-+(void)setDispenseMaxPosition:(NSNumber*)position;
-+(NSNumber*)dispenseMaxPosition;
++(void)setDispenseMaxPosition:(NSUInteger)position;
++(NSUInteger)dispenseMaxPosition;
 
-+(void)setDispenseNumChoices:(NSNumber*)numChoices;
-+(NSNumber*)dispenseNumChoices;
++(void)setDispenseNumChoices:(NSUInteger)numChoices;
++(NSUInteger)dispenseNumChoices;
 
 @end

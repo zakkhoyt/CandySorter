@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VWWTrimsTableViewController : UITableViewController
+@class VWWTrimsTableViewController;
 
+@protocol VWWTrimsTableViewControllerDelegate <NSObject>
+-(void)trimsTableViewControllerLoadPositionChanged:(VWWTrimsTableViewController*)sender;
+-(void)trimsTableViewControllerInspectPositionChanged:(VWWTrimsTableViewController*)sender;
+-(void)trimsTableViewControllerDropPositionChanged:(VWWTrimsTableViewController*)sender;
+-(void)trimsTableViewControllerDispenseMinPositionChanged:(VWWTrimsTableViewController*)sender;
+-(void)trimsTableViewControllerDispenseMaxPositionChanged:(VWWTrimsTableViewController*)sender;
+-(void)trimsTableViewControllerNumBinsChanged:(VWWTrimsTableViewController*)sender;
+@end
+
+@interface VWWTrimsTableViewController : UITableViewController
+@property (nonatomic, strong) id <VWWTrimsTableViewControllerDelegate> delegate;
 @end

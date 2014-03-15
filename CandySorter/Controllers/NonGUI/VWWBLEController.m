@@ -74,6 +74,7 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
 @interface VWWBLEController () <BLEDelegate>
 @property (strong, nonatomic) BLE *ble;
 
+
 @property (nonatomic, strong) VWWEmptyBlock loadCandyCompletionBlock;
 @property (nonatomic, strong) VWWEmptyBlock dropCandyCompletionBlock;
 @property (nonatomic, strong) VWWEmptyBlock initServosCompletionBlock;
@@ -119,13 +120,10 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
     return self;
 }
 
-
-// Connect button will call to this
 -(void)scanForPeripherals{
     if (self.ble.activePeripheral){
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected){
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
-            //            [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
             VWW_LOG_INFO(@"Found peripheral devices");
             return;
         }
@@ -134,13 +132,11 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
         self.ble.peripherals = nil;
     }
     
-    //    [btnConnect setEnabled:false];
     VWW_LOG_INFO(@"Enable connect button here");
     [self.ble findBLEPeripherals:2];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
-    
-    //    [indConnecting startAnimating];
+
     VWW_LOG_INFO(@"Start animating...");
 }
 
@@ -224,19 +220,13 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
 
 
 -(void)connectionTimer:(NSTimer *)timer{
-//    [btnConnect setEnabled:true];
     VWW_LOG_INFO(@"Enable connect button");
-//    [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
     VWW_LOG_INFO(@"Set button title to disconnect");
     
     if (self.ble.peripherals.count > 0){
         [self.ble connectPeripheral:[self.ble.peripherals objectAtIndex:0]];
-    }
-    else
-    {
-//        [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    } else {
         VWW_LOG_INFO(@"Set button title to connect");
-//        [indConnecting stopAnimating];
         VWW_LOG_INFO(@"Stop animating");
     }
 }
@@ -257,8 +247,10 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
     [self.delegate bleControllerDidDisconnect:self];
 }
 -(void)bleDidUpdateRSSI:(NSNumber *)rssi{
-    VWW_LOG_TRACE;
-    [self.delegate bleController:self didUpdateRSSI:rssi];
+//    VWW_LOG_TRACE;
+    if(self.delegate){
+        [self.delegate bleController:self didUpdateRSSI:rssi];
+    }
 }
 -(void)bleDidReceiveData:(unsigned char *)data length:(int)length{
     VWW_LOG_INFO(@"Length: %d", length);
@@ -268,8 +260,8 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
     }
     
     // parse data, all commands are in 3-byte. See header of commands.
-//    for (int i = 0; i < length; i+=3){
-    NSUInteger i = 0;
+    for (int i = 0; i < length; i+=3){
+//    NSUInteger i = 0;
         if(data[i] == kCandyWasLoadedCommand){
             VWW_LOG_INFO(@"Candy was loaded");
             if(self.loadCandyCompletionBlock){
@@ -324,7 +316,7 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
         } else {
             VWW_LOG_INFO(@"Received unknown command: 0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
         }
-//    }
+    }
 }
 
 

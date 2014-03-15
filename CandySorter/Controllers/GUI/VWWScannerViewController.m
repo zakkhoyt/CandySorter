@@ -19,19 +19,20 @@
 #import "VWWCommandsTableViewController.h"
 #import "VWWBinsTableViewController.h"
 #import "MBProgressHUD.h"
+#import "VWWTrimsTableViewController.h"
 
 static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
 static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
 static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 static NSString *VWWSegueScannerToTrims = @"VWWSegueScannerToTrims";
 
-
 @interface VWWScannerViewController ()
 <AVCaptureVideoDataOutputSampleBufferDelegate,
 VWWBLEControllerDelegate,
 VWWCommandsTableViewControllerDelegate,
 VWWDetailsTableViewControllerDelegate,
-VWWBinsTableViewControllerDelegate>
+VWWBinsTableViewControllerDelegate,
+VWWTrimsTableViewControllerDelegate>
 
 @property dispatch_queue_t avqueue;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
@@ -99,6 +100,14 @@ VWWBinsTableViewControllerDelegate>
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:VWWSegueScannerToTrims]){
+        VWWTrimsTableViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+    }
+}
+
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
@@ -500,6 +509,53 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
+}
+
+#pragma mark VWWTrimsTableViewControllerDelegate
+-(void)trimsTableViewControllerLoadPositionChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setLoadPosition:((UInt8)[VWWUserDefaults loadPosition]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+}
+-(void)trimsTableViewControllerInspectPositionChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setInspectPosition:((UInt8)[VWWUserDefaults inspectPosition]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+    
+}
+-(void)trimsTableViewControllerDropPositionChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setDropPosition:((UInt8)[VWWUserDefaults dropPosition]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+
+}
+-(void)trimsTableViewControllerDispenseMinPositionChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setDispenseMinPosition:((UInt8)[VWWUserDefaults dispenseMinPosition]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+
+}
+-(void)trimsTableViewControllerDispenseMaxPositionChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setDispenseMaxPosition:((UInt8)[VWWUserDefaults dispenseMaxPosition]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+}
+-(void)trimsTableViewControllerNumBinsChanged:(VWWTrimsTableViewController*)sender{
+    __weak VWWScannerViewController *weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.bleController setDispenseNumChoices:((UInt8)[VWWUserDefaults dispenseNumChoices]) completionBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
 }
 
 

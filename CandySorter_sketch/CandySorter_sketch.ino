@@ -69,8 +69,10 @@ Serial.begin(57600);
     Serial.println("Init drop servo");
     dropServo.attach(kDropServoPin);
     
+ 
     initServos();    
     Serial.println("Servo setup");
+ 
 #endif
 }
 
@@ -212,18 +214,18 @@ void loop() {
 }
 
 void loadCandy(){
-    Serial.println("Loading candy position");
+//    Serial.println("Loading candy position");
     
     loadServo.write(loadPosition); 
 }
 
 void inspectCandy(){
-    Serial.println("Inspect candy position");
+//    Serial.println("Inspect candy position");
     loadServo.write(inspectPosition); 
 }
 
 void dropCandy(){
-    Serial.println("Drop candy position");
+//    Serial.println("Drop candy position");
     loadServo.write(dropPosition);  
 }
 
@@ -235,7 +237,8 @@ void dispenseCandy(unsigned int pos, unsigned int totalPositions){
     
     char *s = (char*)malloc(16 * sizeof(char));
     sprintf(s, "Pos: %u:%u", pos, p);
-    Serial.println(s);
+    free(s);
+//    Serial.println(s);
     
     
     
@@ -246,25 +249,37 @@ void dispenseCandy(unsigned int pos, unsigned int totalPositions){
 void initServos(){
       // Move servos to default locations
     loadCandy();
-    delay(200);
+    delay(100);
     inspectCandy();
-    delay(200);
+    delay(100);
     dropCandy();
-    delay(200);
+    delay(100);
     inspectCandy();
-    delay(200);
+    delay(100);
     loadCandy();
-    delay(200);
+    delay(100);
     inspectCandy();
-    delay(200);
+    delay(100);
     
     for(unsigned int x = 0; x < dispenseNumChoices; x++){
       dispenseCandy(x, dispenseNumChoices);
-      delay(200);
+      
+      char *s = (char*)malloc(16 * sizeof(char));
+      sprintf(s, "x: %d %d", x, dispenseNumChoices);
+      Serial.println(s);
+      free(s);
+      delay(100);
     }
     for(int x = dispenseNumChoices - 2; x > -1; x--){
       dispenseCandy(x, dispenseNumChoices);
-      delay(200);
+      
+      char *s = (char*)malloc(16 * sizeof(char));
+      sprintf(s, "x: %d %d", x, dispenseNumChoices);
+      Serial.println(s);
+      free(s);      
+      delay(100);
     }
+
+    delay(100);
 }
 
