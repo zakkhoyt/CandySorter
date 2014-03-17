@@ -55,15 +55,16 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 #pragma mark Private methods
 
-// Configure with servo positions
+// Configure with servo positions read from NSUserDefaults.
 -(void)configureArduinoWithCompletionBlock:(VWWEmptyBlock)completionBlock{
     
 
     // This is a hoaky way to get around synchronously calling asynchronous blocks
-    // However CoreData seems to only want to run on the main thread making
+    // However CoreBluetooth seems to only want to run on the main thread making
     // dispatch_semaphore and NSRunLoop polling tend to freeze the GUI.
     // Since these calls return fairly quickly, we'll just sleep between each call.
     // This is not a typical way to accomplish this in iOS programming.
+    
     UInt8 loadPosition = [VWWUserDefaults loadPosition];
     [self.bleController setLoadPosition:loadPosition completionBlock:^{
 
@@ -117,14 +118,16 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
     self.connectButton.enabled = NO;
     self.hud.dimBackground = YES;
     self.hud.labelText = @"Connecting...";
+    
+    __weak VWWDefaultViewController *weakSelf = self;
     [self.bleController scanForPeripheralsWithCompletionBlock:^{
-        self.hud.detailsLabelText = @"Initializing...";
-        [self configureArduinoWithCompletionBlock:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            
-            [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
-            self.connectButton.enabled = YES;
+        // We've connected to the BLE device.
+        // Now let's configure it from the iOS app rather than hard coding in the firmware.
+        weakSelf.hud.detailsLabelText = @"Initializing...";
+        [weakSelf configureArduinoWithCompletionBlock:^{
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [weakSelf performSegueWithIdentifier:VWWSegueDefaultToScanner sender:weakSelf];
+            weakSelf.connectButton.enabled = YES;
         }];
 
     } errorBlock:^{

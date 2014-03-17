@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 Zakk Hoyt. All rights reserved.
 //
 // Some good stuff about augmented reality here: http://cmgresearch.blogspot.com/2010/10/augmented-reality-on-iphone-with-ios40.html
+//
+//  This is our main workhorse view controller. It has a pointer to our bleController.
+//  This screen has a set of child view controllers to issuer commands, set trims, etc..
+//  Rather than passing the bleController pointer to each child view controller, we'll instead
+//  use delegates that call back to this class which in turn will call the bleController.
+//  This centralizes all bleContorller to commands to this VC and the default VC (connect function)
 
 
 #import "VWWScannerViewController.h"
@@ -21,9 +27,6 @@
 #import "MBProgressHUD.h"
 #import "VWWTrimsTableViewController.h"
 
-static NSString *VWWSegueScannerToCommands = @"VWWSegueScannerToCommands";
-static NSString *VWWSegueScannerToDetails = @"VWWSegueScannerToDetails";
-static NSString *VWWSegueScannerToBins = @"VWWSegueScannerToBins";
 static NSString *VWWSegueScannerToTrims = @"VWWSegueScannerToTrims";
 
 @interface VWWScannerViewController ()
@@ -426,13 +429,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     
     
-    dispatch_sync(dispatch_get_main_queue(), ^{
+//    dispatch_sync(dispatch_get_main_queue(), ^{
 //        [self updateColor:color];
 //        self.lblColorName.text = color.name;
 //        self.lblColorDetails.text = color.description;
 //        self.currentColorView.backgroundColor = color.color;
 //        self.crosshairsView.selectedPixel = CGPointMake(halfWidth, halfHeight);
-    });
+//    });
 }
 
 
@@ -490,8 +493,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     hud.labelText = @"Dropping candy";
 
     NSInteger bin = arc4random() % 12;
+    __weak VWWScannerViewController *weakSelf = self;
     [self.bleController dropCandyInBin:bin completionBlock:^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
     }];
 
 }
@@ -499,8 +503,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.dimBackground = YES;
     hud.labelText = @"Init servos";
+    
+    __weak VWWScannerViewController *weakSelf = self;
     [self.bleController initializeServosWithCompletionBlock:^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
     }];
 }
 
@@ -517,8 +523,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     hud.dimBackground = YES;
     hud.labelText = @"Dropping candy";
     
+    __weak VWWScannerViewController *weakSelf = self;
     [self.bleController dropCandyInBin:index completionBlock:^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
     }];
     
 }

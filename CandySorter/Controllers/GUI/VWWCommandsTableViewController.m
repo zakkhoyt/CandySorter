@@ -11,12 +11,9 @@
 @interface VWWCommandsTableViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *autoPickSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
-
 @end
 
 @implementation VWWCommandsTableViewController
-
-
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -54,7 +51,6 @@
 }
 - (IBAction)initServosButtonTouchUpInside:(id)sender {
     [self.delegate commandsTableViewControllerInitButtonTouchUpInside:self];
-//    [self.bleController initializeServos];
 }
 - (IBAction)trimsButtonTouchUpInside:(id)sender {
     [self.delegate commandsTableViewControllerTrimsButtonTouchUpInside:self];

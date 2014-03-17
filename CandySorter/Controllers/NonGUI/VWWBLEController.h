@@ -45,22 +45,22 @@
 @interface VWWBLEController : NSObject
 +(VWWBLEController*)sharedInstance;
 
--(void)scanForPeripheralsWithCompletionBlock:(VWWEmptyBlock)completionBlock
-                                  errorBlock:(VWWEmptyBlock)errorBlock;
-
--(void)setBLEDidDisconnectBlock:(VWWEmptyBlock)disconnectBlock;
--(void)setRSSIDidUpdateBlock:(VWWNumberBlock)rssiBlock;
-
+// These blocks are used to setup callbacks that are fired "now".
+-(void)scanForPeripheralsWithCompletionBlock:(VWWEmptyBlock)completionBlock errorBlock:(VWWEmptyBlock)errorBlock;
 -(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock;
 -(void)loadCandyWithCompletionBlock:(VWWEmptyBlock)completionBlock;
 -(void)dropCandyInBin:(UInt8)bin completionBlock:(VWWEmptyBlock)completionBlock;
-
 -(void)setLoadPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setInspectPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setDropPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setDispenseMinPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setDispenseMaxPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setDispenseNumChoices:(UInt8)numChoices completionBlock:(VWWEmptyBlock)completionBlock;
+
+
+// These blocks are used to setup callbacks that are fired "later on". Things like RSSI updates or a disconnect
+-(void)setBLEDidDisconnectBlock:(VWWEmptyBlock)disconnectBlock;
+-(void)setRSSIDidUpdateBlock:(VWWNumberBlock)rssiBlock;
 
 @end
 
