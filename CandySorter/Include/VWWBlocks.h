@@ -12,5 +12,5 @@
 typedef void (^VWWBOOLBlock)(BOOL success);
 typedef void (^VWWEmptyBlock)(void);
 typedef void (^VWWIntegerBlock)(NSInteger value);
-
+typedef void (^VWWNumberBlock)(NSNumber* number);
 #endif

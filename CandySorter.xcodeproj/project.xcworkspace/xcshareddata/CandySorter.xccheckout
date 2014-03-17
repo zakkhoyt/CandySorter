@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FD99AFD6-D1FB-4E0C-BF39-5B6BFB0E958D</string>
+	<string>A9954232-B806-4002-BC04-65C63DD51EEA</string>
 	<key>IDESourceControlProjectName</key>
 	<string>CandySorter</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>ED8F8CE3-2969-4E17-9EFC-EB872D9FA698</key>
-		<string>ssh://github.com/zakkhoyt/CandySorter.git</string>
+		<key>1C31F66B-60F7-427A-804D-6CD9D37CACAD</key>
+		<string>ssh://github.com/zakkhoyt/CandySorter</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>CandySorter.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>ED8F8CE3-2969-4E17-9EFC-EB872D9FA698</key>
+		<key>1C31F66B-60F7-427A-804D-6CD9D37CACAD</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/zakkhoyt/CandySorter.git</string>
+	<string>ssh://github.com/zakkhoyt/CandySorter</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>ED8F8CE3-2969-4E17-9EFC-EB872D9FA698</string>
+	<string>1C31F66B-60F7-427A-804D-6CD9D37CACAD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>ED8F8CE3-2969-4E17-9EFC-EB872D9FA698</string>
+			<string>1C31F66B-60F7-427A-804D-6CD9D37CACAD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CandySorter</string>
 		</dict>

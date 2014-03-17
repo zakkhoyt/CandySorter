@@ -12,7 +12,7 @@
 
 static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
-@interface VWWDefaultViewController () <VWWBLEControllerDelegate>
+@interface VWWDefaultViewController ()
 @property (nonatomic, strong) VWWBLEController *bleController;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (nonatomic, strong) MBProgressHUD *hud;
@@ -40,7 +40,6 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.bleController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,32 +117,24 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
     self.connectButton.enabled = NO;
     self.hud.dimBackground = YES;
     self.hud.labelText = @"Connecting...";
-    [self.bleController scanForPeripherals];
+    [self.bleController scanForPeripheralsWithCompletionBlock:^{
+        self.hud.detailsLabelText = @"Initializing...";
+        [self configureArduinoWithCompletionBlock:^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            
+            [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
+            self.connectButton.enabled = YES;
+        }];
+
+    } errorBlock:^{
+        VWW_LOG_INFO(@"Failed to connect");
+    }];
 }
 - (IBAction)scannerButtonTouchUpInside:(id)sender {
     [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
 }
 
-
-
-#pragma mark VWWBLEControllerDelegate
-
--(void)bleControllerDidConnect:(VWWBLEController*)sender{
-    self.hud.detailsLabelText = @"Initializing...";
-    [self configureArduinoWithCompletionBlock:^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
-        self.connectButton.enabled = YES;
-    }];
-}
--(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    self.connectButton.enabled = YES;
-}
-
--(void)bleController:(VWWBLEController *)sender didUpdateRSSI:(NSNumber *)rssi{
-    
-}
 
 
 @end

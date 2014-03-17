@@ -42,19 +42,15 @@
 
 @class VWWBLEController;
 
-@protocol VWWBLEControllerDelegate <NSObject>
-@required
--(void)bleControllerDidConnect:(VWWBLEController*)sender;
--(void)bleControllerDidDisconnect:(VWWBLEController*)sender;
-@optional
--(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi;
-@end
-
-
 @interface VWWBLEController : NSObject
 +(VWWBLEController*)sharedInstance;
 
--(void)scanForPeripherals;
+-(void)scanForPeripheralsWithCompletionBlock:(VWWEmptyBlock)completionBlock
+                                  errorBlock:(VWWEmptyBlock)errorBlock;
+
+-(void)setBLEDidDisconnectBlock:(VWWEmptyBlock)disconnectBlock;
+-(void)setRSSIDidUpdateBlock:(VWWNumberBlock)rssiBlock;
+
 -(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock;
 -(void)loadCandyWithCompletionBlock:(VWWEmptyBlock)completionBlock;
 -(void)dropCandyInBin:(UInt8)bin completionBlock:(VWWEmptyBlock)completionBlock;
@@ -66,10 +62,6 @@
 -(void)setDispenseMaxPosition:(UInt8)position completionBlock:(VWWEmptyBlock)completionBlock;
 -(void)setDispenseNumChoices:(UInt8)numChoices completionBlock:(VWWEmptyBlock)completionBlock;
 
-
-
-
-@property (nonatomic, weak) id <VWWBLEControllerDelegate> delegate;
 @end
 
 

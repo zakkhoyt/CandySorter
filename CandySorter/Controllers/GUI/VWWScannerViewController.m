@@ -28,7 +28,6 @@ static NSString *VWWSegueScannerToTrims = @"VWWSegueScannerToTrims";
 
 @interface VWWScannerViewController ()
 <AVCaptureVideoDataOutputSampleBufferDelegate,
-VWWBLEControllerDelegate,
 VWWCommandsTableViewControllerDelegate,
 VWWDetailsTableViewControllerDelegate,
 VWWBinsTableViewControllerDelegate,
@@ -86,8 +85,10 @@ VWWTrimsTableViewControllerDelegate>
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.bleController.delegate = self;
+
     self.navigationController.navigationBarHidden = YES;
+    
+    [self setupBLECallbacks];
     
 #if TARGET_IPHONE_SIMULATOR
 #else
@@ -173,7 +174,19 @@ VWWTrimsTableViewControllerDelegate>
 
 #pragma mark Private methods
 
-
+-(void)setupBLECallbacks{
+    __weak VWWScannerViewController *weakSelf = self;
+    [self.bleController setBLEDidDisconnectBlock:^{
+        [weakSelf stopCamera];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    
+    [self.bleController setRSSIDidUpdateBlock:^(NSNumber *rssi) {
+         weakSelf.commandsViewController.rssi = rssi.stringValue;
+    }];
+    
+}
 -(void)showChildViewController:(UIViewController*)vc{
     
 
@@ -295,8 +308,7 @@ VWWTrimsTableViewControllerDelegate>
     VWW_LOG_TODO_TASK(@"Stop the camera capturing");
 }
 
-- (NSArray*)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(int)count
-{
+- (NSArray*)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(int)count{
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
     
     // First get the image into your data buffer
@@ -561,18 +573,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 #pragma mark VWWBLEControllerDelegate
 
--(void)bleControllerDidConnect:(VWWBLEController*)sender{
-//    [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
-}
+//-(void)bleControllerDidConnect:(VWWBLEController*)sender{
+////    [self performSegueWithIdentifier:VWWSegueDefaultToScanner sender:self];
+//}
 
--(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
-    [self stopCamera];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//-(void)bleControllerDidDisconnect:(VWWBLEController*)sender{
+//    [self stopCamera];
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
--(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi{
-    self.commandsViewController.rssi = rssi.stringValue;
-}
+//-(void)bleController:(VWWBLEController*)sender didUpdateRSSI:(NSNumber*)rssi{
+//    self.commandsViewController.rssi = rssi.stringValue;
+//}
 
 
 

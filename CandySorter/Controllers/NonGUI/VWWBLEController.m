@@ -74,6 +74,10 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
 @interface VWWBLEController () <BLEDelegate>
 @property (strong, nonatomic) BLE *ble;
 
+@property (nonatomic, strong) VWWEmptyBlock connectSuccessBlock;
+@property (nonatomic, strong) VWWEmptyBlock connectErrorBlock;
+@property (nonatomic, strong) VWWEmptyBlock disconnectBlock;
+@property (nonatomic, strong) VWWNumberBlock rssiBlock;
 
 @property (nonatomic, strong) VWWEmptyBlock loadCandyCompletionBlock;
 @property (nonatomic, strong) VWWEmptyBlock dropCandyCompletionBlock;
@@ -120,7 +124,13 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
     return self;
 }
 
--(void)scanForPeripherals{
+
+-(void)scanForPeripheralsWithCompletionBlock:(VWWEmptyBlock)completionBlock
+                                  errorBlock:(VWWEmptyBlock)errorBlock{
+
+    self.connectSuccessBlock = completionBlock;
+    self.connectErrorBlock = errorBlock;
+    
     if (self.ble.activePeripheral){
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected){
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
@@ -138,6 +148,14 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
 
     VWW_LOG_INFO(@"Start animating...");
+}
+
+-(void)setBLEDidDisconnectBlock:(VWWEmptyBlock)disconnectBlock{
+    self.disconnectBlock = disconnectBlock;
+}
+
+-(void)setRSSIDidUpdateBlock:(VWWNumberBlock)rssiBlock{
+    self.rssiBlock = rssiBlock;
 }
 
 -(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock{
@@ -236,20 +254,32 @@ const UInt8 kDispenseNumChoicesWasSetCommand = 0xC8;
 -(void)bleDidConnect{
     VWW_LOG_TRACE;
     
+    // Start reading RSSI
     self.rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
 
-    [self.delegate bleControllerDidConnect:self];
+    if(self.connectSuccessBlock){
+        self.connectSuccessBlock();
+    }
     
 }
 -(void)bleDidDisconnect{
     VWW_LOG_TRACE;
+    // Stop RSSI updates
     [self.rssiTimer invalidate];
-    [self.delegate bleControllerDidDisconnect:self];
+    
+    if(self.disconnectBlock){
+        self.disconnectBlock();
+        _disconnectBlock = nil;
+    }
+
 }
 -(void)bleDidUpdateRSSI:(NSNumber *)rssi{
 //    VWW_LOG_TRACE;
-    if(self.delegate){
-        [self.delegate bleController:self didUpdateRSSI:rssi];
+//    if(self.delegate){
+//        [self.delegate bleController:self didUpdateRSSI:rssi];
+//    }
+    if(self.rssiBlock){
+        self.rssiBlock(rssi);
     }
 }
 -(void)bleDidReceiveData:(unsigned char *)data length:(int)length{

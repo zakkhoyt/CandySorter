@@ -1,20 +1,20 @@
 
 
 // BLE libraries available here: http://redbearlab.com/rbl_library
-// Redbear includes
+// BLE includes
 #include <SPI.h>
 #include <boards.h>
 #include <ble_shield.h>
 #include <services.h>
 
-// VWW includes
+// Servo includes
 #include <Servo.h>
 
 // Preprocessors for debugging
 #define VWW_ENABLE_BLE 1
 #define VWW_ENABLE_SERVOS 1
 
-// Command byts for BLE
+// Command bytes for incoming BLE
 const unsigned int kLoadCandyCommand = 0xB0;
 const unsigned int kDropCandyCommand = 0xB1;
 const unsigned int kIntializeServosCommand = 0xB2;
@@ -24,7 +24,7 @@ const unsigned int kSetDropCandyPositionCommand = 0xB5;
 const unsigned int kSetDispenseMinPositionCommand = 0xB6;
 const unsigned int kSetDispenseMaxPositionCommand = 0xB7;
 const unsigned int kSetDispenseNumChoicesCommand = 0xB8;
-
+// Command bytes for outgoing BLE
 const unsigned int kCandyWasLoadedCommand = 0xC0;
 const unsigned int kCandyWasDroppedCommand = 0xC1;
 const unsigned int kServosDidInitializeCommand = 0xC2;
@@ -214,19 +214,19 @@ void loop() {
 }
 
 void loadCandy(){
-//    Serial.println("Loading candy position");
+    Serial.println("Loading candy position");
     
     loadServo.write(loadPosition); 
 }
 
 void inspectCandy(){
-//    Serial.println("Inspect candy position");
-    loadServo.write(inspectPosition); 
+    Serial.println("Inspect candy position");
+    loadServo.write(inspectPosition);
 }
 
 void dropCandy(){
-//    Serial.println("Drop candy position");
-    loadServo.write(dropPosition);  
+    Serial.println("Drop candy position");
+    loadServo.write(dropPosition);
 }
 
 void dispenseCandy(unsigned int pos, unsigned int totalPositions){
@@ -237,8 +237,8 @@ void dispenseCandy(unsigned int pos, unsigned int totalPositions){
     
     char *s = (char*)malloc(16 * sizeof(char));
     sprintf(s, "Pos: %u:%u", pos, p);
+    Serial.println(s);
     free(s);
-//    Serial.println(s);
     
     
     
