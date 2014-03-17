@@ -15,38 +15,39 @@
 #define VWW_ENABLE_SERVOS 1
 
 // Command bytes for incoming BLE
-const unsigned int kLoadCandyCommand = 0xB0;
-const unsigned int kDropCandyCommand = 0xB1;
-const unsigned int kIntializeServosCommand = 0xB2;
-const unsigned int kSetLoadPositionCommand = 0xB3;
-const unsigned int kSetInspectPositionCommand = 0xB4;
-const unsigned int kSetDropCandyPositionCommand = 0xB5;
-const unsigned int kSetDispenseMinPositionCommand = 0xB6;
-const unsigned int kSetDispenseMaxPositionCommand = 0xB7;
-const unsigned int kSetDispenseNumChoicesCommand = 0xB8;
+const byte kLoadCandyCommand = 0xB0;
+const byte kDropCandyCommand = 0xB1;
+const byte kIntializeServosCommand = 0xB2;
+const byte kSetLoadPositionCommand = 0xB3;
+const byte kSetInspectPositionCommand = 0xB4;
+const byte kSetDropCandyPositionCommand = 0xB5;
+const byte kSetDispenseMinPositionCommand = 0xB6;
+const byte kSetDispenseMaxPositionCommand = 0xB7;
+const byte kSetDispenseNumChoicesCommand = 0xB8;
+
 // Command bytes for outgoing BLE
-const unsigned int kCandyWasLoadedCommand = 0xC0;
-const unsigned int kCandyWasDroppedCommand = 0xC1;
-const unsigned int kServosDidInitializeCommand = 0xC2;
-const unsigned int kLoadPositionWasSetCommand = 0xC3;
-const unsigned int inspectPositionWasSetCommand = 0xC4;
-const unsigned int kDropCandyPositionWasSetCommand = 0xC5;
-const unsigned int kDispenseMinPositionWasSetCommand = 0xC6;
-const unsigned int kDispenseMaxPositionWasSetCommand = 0xC7;
-const unsigned int kDispenseNumChoicesWasSetCommand = 0xC8;
+const byte kCandyWasLoadedCommand = 0xC0;
+const byte kCandyWasDroppedCommand = 0xC1;
+const byte kServosDidInitializeCommand = 0xC2;
+const byte kLoadPositionWasSetCommand = 0xC3;
+const byte inspectPositionWasSetCommand = 0xC4;
+const byte kDropCandyPositionWasSetCommand = 0xC5;
+const byte kDispenseMinPositionWasSetCommand = 0xC6;
+const byte kDispenseMaxPositionWasSetCommand = 0xC7;
+const byte kDispenseNumChoicesWasSetCommand = 0xC8;
 
 // I/O pins
-const unsigned int kLEDPin = 4;
-const unsigned int kLoadServoPin = 5;
-const unsigned int kDropServoPin = 6;
+const byte kLEDPin = 4;
+const byte kLoadServoPin = 5;
+const byte kDropServoPin = 6;
 
 // Servo positions
-unsigned int loadPosition = 160;
-unsigned int inspectPosition = 90;
-unsigned int dropPosition = 20;
-unsigned int dispenseMinPosition = 20;
-unsigned int dispenseMaxPosition = 160;
-unsigned int dispenseNumChoices = 12;
+byte loadPosition = 160;
+byte inspectPosition = 90;
+byte dropPosition = 20;
+byte dispenseMinPosition = 20;
+byte dispenseMaxPosition = 160;
+byte dispenseNumChoices = 12;
 
 // Servos
 Servo loadServo;
