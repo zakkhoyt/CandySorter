@@ -16,6 +16,7 @@
 		CF5C428E18C31F2B006A1260 /* VWWScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C428D18C31F2B006A1260 /* VWWScannerController.m */; };
 		CF7A7AC618C3E82600381A93 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7A7AC418C3E82600381A93 /* BLE.m */; };
 		CF7A7AD018C3E82F00381A93 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7A7ACE18C3E82F00381A93 /* MBProgressHUD.m */; };
+		CFAF749B18D6873500790A66 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAF749A18D6873500790A66 /* NSTimer+Blocks.m */; };
 		CFBE286D18C2AB3900DDB182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286C18C2AB3900DDB182 /* Foundation.framework */; };
 		CFBE286F18C2AB3900DDB182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */; };
 		CFBE287118C2AB3900DDB182 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBE287018C2AB3900DDB182 /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 		CF7A7ACD18C3E82F00381A93 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		CF7A7ACE18C3E82F00381A93 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		CF7A7AD218C3ECD100381A93 /* VWWBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWWBlocks.h; sourceTree = "<group>"; };
+		CFAF749918D6873500790A66 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		CFAF749A18D6873500790A66 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		CFBE286918C2AB3900DDB182 /* CandySorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandySorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE286C18C2AB3900DDB182 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFBE286E18C2AB3900DDB182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -237,6 +240,15 @@
 			path = Include;
 			sourceTree = "<group>";
 		};
+		CFAF749818D6873500790A66 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				CFAF749918D6873500790A66 /* NSTimer+Blocks.h */,
+				CFAF749A18D6873500790A66 /* NSTimer+Blocks.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		CFBE286018C2AB3900DDB182 = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +286,7 @@
 		CFBE287218C2AB3900DDB182 /* CandySorter */ = {
 			isa = PBXGroup;
 			children = (
+				CFAF749818D6873500790A66 /* Categories */,
 				CFBE28AB18C2AC0600DDB182 /* Controllers */,
 				CFBE288418C2AB3900DDB182 /* Images.xcassets */,
 				CFBE28C618C2B24700DDB182 /* Model */,
@@ -490,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF53AEBA18C58045009F868B /* VWWTrimsTableViewController.m in Sources */,
+				CFAF749B18D6873500790A66 /* NSTimer+Blocks.m in Sources */,
 				CF5C428818C318AC006A1260 /* VWWBinsTableViewController.m in Sources */,
 				CF5C428418C316C7006A1260 /* VWWBinTableViewCell.m in Sources */,
 				CFBE28C118C2B1DB00DDB182 /* VWWScannerViewController.m in Sources */,

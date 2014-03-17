@@ -9,6 +9,7 @@
 #import "VWWDefaultViewController.h"
 #import "VWWBLEController.h"
 #import "MBProgressHUD.h"
+#import "NSTimer+Blocks.h"
 
 static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
 
@@ -118,10 +119,21 @@ static NSString *VWWSegueDefaultToScanner = @"VWWSegueDefaultToScanner";
     self.connectButton.enabled = NO;
     self.hud.dimBackground = YES;
     self.hud.labelText = @"Connecting...";
+
+    // If this fires, we'v timed out trying to connect
+    __block NSTimer *timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 block:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.connectButton.enabled = YES;
+    } repeats:NO];
+    
     
     __weak VWWDefaultViewController *weakSelf = self;
     [self.bleController scanForPeripheralsWithCompletionBlock:^{
         // We've connected to the BLE device.
+        // We don't need this timer anymore
+        [timeoutTimer invalidate];
+        timeoutTimer = nil;
+
         // Now let's configure it from the iOS app rather than hard coding in the firmware.
         weakSelf.hud.detailsLabelText = @"Initializing...";
         [weakSelf configureArduinoWithCompletionBlock:^{
